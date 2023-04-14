@@ -1,0 +1,116 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.square {
+  &_white {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: color(white1);
+    border: 1px solid color(white1);
+    border-radius: (4px);
+    transition: all 0.3s;
+    padding: 13px 40px 11px;
+    white-space: nowrap;
+
+    &:hover {
+      transition: all 0.3s;
+      background: color(black1);
+      border: 1px solid color(white1);
+      color: color(white1);
+      box-shadow: 0 0 123px rgba(255, 255, 255, 0.6);
+
+    }
+  }
+
+  &_black {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+    padding: 23px 40px 19px;
+    border: 1px solid color(black1);
+    border-radius: (6px);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: color(black1);
+    transition: all 0.3s;
+
+    &:hover {
+      transition: all 0.3s;
+      color: color(white1);
+      background-color: color(black1);
+    }
+
+    &:first-child {
+      color: color(white1);
+      background-color: color(black1);
+    }
+  }
+}
+
+.chips {
+  &_black {
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 9px 18px 7px;
+    border: 1px solid color(black1);
+    border-radius: (23px);
+    transition: all 0.3s;
+
+    &:hover {
+      transition: all 0.3s;
+      color: color(white1);
+      background-color: color(black1);
+    }
+  }
+}
+
+.auth {
+  &_auth {
+    background-color: color(color_login_background);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    color: color(color_text_primary);
+
+    svg {
+      g {
+        path {
+          transition: all 0.3s;
+          fill: color(color_text_primary);
+        }
+      }
+    }
+
+    &:hover {
+      color: color(color_text_color_background);
+      background-color: color(color_text_primary_active);
+
+      svg {
+        transition: all 0.3s;
+
+        g {
+          path {
+            transition: all 0.3s;
+            fill: color(color_text_color_background);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+

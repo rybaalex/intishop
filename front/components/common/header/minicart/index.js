@@ -1,0 +1,1 @@
+export { MiniCartContainer as MiniCart } from "./miniCartContainer";

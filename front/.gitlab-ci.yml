@@ -1,0 +1,50 @@
+image: node:latest
+stages:
+  - prepare_test
+  - build
+  - test
+  - clear_images
+  - deploy_staging
+
+prepare:
+  stage: prepare_test
+  script:
+    - npm install
+    - npm run lint
+  only:
+    - master
+  tags:
+    - stagin  
+    
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  only:
+    - master    
+  tags:
+    - stagin  
+
+testing:
+  dependencies:
+    - build
+  stage: test
+  script: 
+    - npm install
+    - npm run test
+  only:
+    - master    
+  tags:
+    - stagin  
+    
+
+deploy_staging:
+  stage: deploy_staging
+  only:
+    - master
+  script:
+    - cd ~/home/user
+    - ls
+  tags:
+    - staging-shell 

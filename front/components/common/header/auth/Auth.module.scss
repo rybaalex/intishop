@@ -1,0 +1,245 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.login_container {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  h1 {
+    font-weight: bold;
+    margin: 0 0 20px 0;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 40px 30px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  a {
+    color: color(color_text_primary);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .max-size {
+    max-width: 300px;
+  }
+
+  button {
+    border-radius: 20px;
+    border: 1px solid color(color_text_primary);
+    background-color: color(color_text_primary);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+
+    &:hover {
+      transition: all 0.3s;
+      border: 1px solid color(color_text_primary_active);
+      background-color: color(color_text_primary_active);
+      transform: scale(0.95);
+    }
+
+    &:active {
+      transform: scale(0.80);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.ghost {
+      background-color: transparent;
+      border-color: #FFFFFF;
+      border-width: 1px;
+    }
+  }
+
+  .form_container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+
+    &.sign_in_container {
+      left: 0;
+      width: 50%;
+      z-index: 2;
+    }
+
+    &.sign_up_container {
+      left: 0;
+      width: 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    form {
+      background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 50px;
+      height: 100%;
+      text-align: center;
+    }
+
+    .forgot {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: flex-start;
+      margin: 15px 0;
+    }
+
+    .all_error {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      margin-top: 20px;
+      height: 40px;
+      transition: all 0.5s;
+      opacity: 0;
+
+      &.visible {
+        opacity: 1;
+        color: color(color_text_primary_active);
+        font-size: 14px;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+    }
+
+    .rowItem {
+      width: 100%;
+
+      &.input_error {
+        input {
+          border: 1px solid red;
+        }
+      }
+    }
+
+    .overflow {
+      height: 25px;
+      color: color(color_text_primary_active);
+      text-align: left;
+      margin-left: 10px;
+      font-size: 16px;
+      line-height: 1;
+
+      span {
+        opacity: 0;
+      }
+
+      .span_visible {
+        transition: all 0.5s;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.right_panel_active {
+    .sign_in_container {
+      transform: translateX(100%);
+    }
+
+    .overlay_container {
+      transform: translateX(-100%);
+
+      .overlay {
+        transform: translateX(50%);
+      }
+
+      .overlay_left {
+        transform: translateX(0);
+      }
+    }
+
+    .sign_up_container {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 5;
+      animation: show 0.6s;
+    }
+  }
+
+  .overlay_container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+
+    .overlay {
+      background-color: color(color_background_primary_hover);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 0 0;
+      color: #FFFFFF;
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+
+      .overlay_panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+      }
+
+      &.overlay_left {
+        transform: translateX(-20%);
+      }
+
+      .overlay_right {
+        right: 0;
+        transform: translateX(0);
+        background-color: color(color_background_primary_hover);
+      }
+    }
+  }
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}

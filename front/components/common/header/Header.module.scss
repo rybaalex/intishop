@@ -1,0 +1,154 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.section_header {
+  border-top: 3px solid color(color_border_secondary);
+
+  .header {
+    display: grid;
+    grid-template-columns:200px 1fr 200px auto;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    white-space: nowrap;
+
+    &__nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+
+      margin-right: 10px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+
+      a {
+        color: black;
+      }
+
+      &_active {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s;
+        padding: 25px 0 35px 0;
+      }
+    }
+
+    &__logo {
+      max-width: 200px;
+    }
+
+    &__contacts {
+      margin-right: 10px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .block_favourites {
+        position: relative;
+
+        &:hover {
+          cursor: pointer;
+          transition: all 0.3s;
+
+          svg {
+            width: 32px;
+            height: 32px;
+            path {
+              transition: all 0.3s;
+
+              fill: color(color_text_primary_active);
+            }
+          }
+
+        }
+
+        .count {
+          position: absolute;
+          border: 1px solid white;
+          background-color: color(color_text_primary_active);
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          justify-content: center;
+          right: -7px;
+          top: -4px;
+
+          span {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: color(color_text_color_background);
+            font-size: 12px;
+            line-height: 0;
+          }
+        }
+
+        svg {
+          width: 32px;
+          height: 32px;
+
+          path {
+            fill: color(color_text_primary);
+          }
+        }
+      }
+    }
+
+  }
+
+  .top_nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid color(color_border_primary);
+
+    .block_contacts {
+      color: color(color_text_primary);
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: color(color_text_primary);
+        text-decoration: none;
+        transition: all 0.3s;
+
+        &:hover {
+          transition: all 0.1s;
+          color: color(color_text_primary_active);
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      gap: 20px;
+
+      a {
+        color: color(color_text_primary);
+        text-decoration: none;
+        transition: all 0.3s;
+
+        &:first-letter {
+          text-transform: uppercase;
+        }
+
+        &:hover {
+          transition: all 0.1s;
+          color: color(color_text_primary_active);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

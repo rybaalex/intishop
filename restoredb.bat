@@ -1,0 +1,1 @@
+docker-compose exec -T mongodb mongorestore --username root --password RY045912LO --archive --gzip < backup/dump.gz

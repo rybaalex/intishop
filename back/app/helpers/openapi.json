@@ -1,0 +1,1166 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Админ API Delarosa",
+    "version" : "1.0.1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:5000/api/v1/admin",
+    "description" : "Сервер разработки"
+  } ],
+  "tags" : [ {
+    "name" : "Colors",
+    "description" : "Действия с цветами",
+    "externalDocs" : {
+      "description" : "Документация swagger",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Sizes",
+    "description" : "Действия с размерами",
+    "externalDocs" : {
+      "description" : "Документация swagger",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Brands",
+    "description" : "Действия с Брендами",
+    "externalDocs" : {
+      "description" : "Документация swagger",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Structure",
+    "description" : "Действия с Материалами",
+    "externalDocs" : {
+      "description" : "Документация swagger",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Category",
+    "description" : "Действия с Категориями товаров",
+    "externalDocs" : {
+      "description" : "Документация swagger",
+      "url" : "http://swagger.io"
+    }
+  } ],
+  "paths" : {
+    "/color" : {
+      "put" : {
+        "tags" : [ "Colors" ],
+        "summary" : "Изменение цвета",
+        "operationId" : "color_edit",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/color_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Цвет изменен",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Цвет не найдет",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Colors" ],
+        "summary" : "Добавление цвета",
+        "operationId" : "color_add",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/color_body_1"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Цвет добавлен",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "Colors" ],
+        "summary" : "Удаление цвета",
+        "operationId" : "color_delete_id",
+        "responses" : {
+          "200" : {
+            "description" : "Цвет Удален",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/size" : {
+      "put" : {
+        "tags" : [ "Sizes" ],
+        "summary" : "Изменение размера",
+        "operationId" : "size_edit",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/size_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Размер изменен успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Sizes" ],
+        "summary" : "Добавление Размера",
+        "operationId" : "size_add",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/size_body_1"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Размер добавлен успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Sizes" ],
+        "summary" : "Удаление размера",
+        "operationId" : "size_delete",
+        "responses" : {
+          "200" : {
+            "description" : "Размер удален успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_5"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/brand" : {
+      "put" : {
+        "tags" : [ "Brands" ],
+        "summary" : "Изменение бренда",
+        "operationId" : "brand_edit",
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/brand_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Бренд изменен успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "Brands" ],
+        "summary" : "Добавление бренда",
+        "operationId" : "brands_add",
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/brand_body_1"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Бренд добавлен удален",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "Brands" ],
+        "summary" : "Удаление бренда",
+        "operationId" : "brand_delete",
+        "responses" : {
+          "200" : {
+            "description" : "Бренд Удален",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_6"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      }
+    },
+    "/structure" : {
+      "put" : {
+        "tags" : [ "Structure" ],
+        "summary" : "Изменение материала",
+        "operationId" : "structure_edit",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/structure_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Материал изменен",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_7"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "Structure" ],
+        "summary" : "Добавление Материала",
+        "operationId" : "structure_add",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/structure_body_1"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Материал добавлен успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_8"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "Structure" ],
+        "summary" : "Удаление материала",
+        "operationId" : "structure_delete",
+        "responses" : {
+          "200" : {
+            "description" : "Материал Удален",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_9"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      }
+    },
+    "/category" : {
+      "put" : {
+        "tags" : [ "Category" ],
+        "summary" : "Изменение категории",
+        "operationId" : "category_edit",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/category_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Категория изменена успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_10"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "Category" ],
+        "summary" : "Добавление Категории",
+        "operationId" : "category_add",
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/category_body_1"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Категория добавлена успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_11"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "Category" ],
+        "summary" : "Удаление категории",
+        "operationId" : "category_delete",
+        "responses" : {
+          "200" : {
+            "description" : "Категория удалена успешно",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_12"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Ошибка авторизации",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "bearerAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "inline_response_200_11" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Категория добавлена успешно"
+          }
+        }
+      },
+      "inline_response_200_10" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Категория изменена успешно"
+          }
+        }
+      },
+      "inline_response_200_12" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Категория удалена успешно"
+          }
+        }
+      },
+      "brand_body_1" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Coco"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "logo" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        }
+      },
+      "structure_body" : {
+        "required" : [ "_id", "sort", "value" ],
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "example" : "63f30bb9bf3855889896067b"
+          },
+          "value" : {
+            "type" : "string",
+            "example" : "Эластан"
+          },
+          "sort" : {
+            "type" : "string",
+            "example" : "10"
+          }
+        }
+      },
+      "size_body_1" : {
+        "required" : [ "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "example" : "72B"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "inline_response_200" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Цвет изменен"
+          }
+        }
+      },
+      "inline_response_401" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 400
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Ошибка авторизации"
+          }
+        }
+      },
+      "inline_response_200_9" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Материал удален"
+          }
+        }
+      },
+      "inline_response_404" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 400
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Цвет не найден"
+          }
+        }
+      },
+      "structure_body_1" : {
+        "required" : [ "sort", "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "example" : "Эластан"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          }
+        }
+      },
+      "inline_response_200_5" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Размер удален успешно"
+          }
+        }
+      },
+      "inline_response_200_6" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Бренд удален успешно"
+          }
+        }
+      },
+      "inline_response_200_7" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Материал изменен"
+          }
+        }
+      },
+      "inline_response_200_8" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Материал добавлен успешно"
+          }
+        }
+      },
+      "category_body_1" : {
+        "required" : [ "alias", "name", "parent_id" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Товары 18+"
+          },
+          "alias" : {
+            "type" : "string",
+            "example" : "product18"
+          },
+          "logo" : {
+            "type" : "string",
+            "format" : "binary"
+          },
+          "image" : {
+            "type" : "string",
+            "format" : "binary"
+          },
+          "parent_id" : {
+            "type" : "string",
+            "example" : ""
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "color_body" : {
+        "required" : [ "_id", "value" ],
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "example" : "63f30bb9bf3855889896067b"
+          },
+          "value" : {
+            "type" : "string",
+            "example" : "Красный"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "category_body" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "example" : "63f3578ed478917a3a675451"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : ""
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "color_body_1" : {
+        "required" : [ "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "example" : "Красный"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "size_body" : {
+        "required" : [ "_id", "value" ],
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "example" : "63f30bb9bf3855889896067b"
+          },
+          "value" : {
+            "type" : "string",
+            "example" : "72B"
+          },
+          "sort" : {
+            "type" : "string",
+            "example" : "10"
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "inline_response_200_1" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Цвет добавлен"
+          }
+        }
+      },
+      "inline_response_200_2" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Цвет удален"
+          }
+        }
+      },
+      "brand_body" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "example" : "63f7c2218201ce3f916b5540"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Coco"
+          },
+          "sort" : {
+            "type" : "number",
+            "example" : 10
+          },
+          "published" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "logo" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        }
+      },
+      "inline_response_200_3" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Размер изменен успешно"
+          }
+        }
+      },
+      "inline_response_200_4" : {
+        "type" : "object",
+        "properties" : {
+          "hasError" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "number",
+            "example" : 200
+          },
+          "response" : {
+            "example" : [ ]
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Размер добавлен успешно"
+          }
+        }
+      }
+    },
+    "responses" : {
+      "UnauthorizedError" : {
+        "description" : "Access token is missing or invalid, or the user does not have access to perform the action",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "message" : {
+                  "type" : "string",
+                  "example" : "Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFoundError" : {
+        "description" : "Not Found",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "message" : {
+                  "type" : "string",
+                  "example" : "Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "type" : "http",
+        "description" : "token",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    }
+  }
+}

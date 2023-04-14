@@ -1,0 +1,69 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.miniCartContainer {
+  display: flex;
+  cursor: pointer;
+  gap: 15px;
+  padding-right: 5px;
+
+  &:hover {
+    transition: all 0.3s;
+
+    .cartCount {
+      svg {
+        circle {
+          transition: all 0.3s;
+
+          stroke: color(color_secondary);
+        }
+
+        path {
+          transition: all 0.3s;
+          stroke: color(color_secondary);
+        }
+      }
+    }
+  }
+
+  .cartCount {
+    display: flex;
+    position: relative;
+
+    svg {
+      circle {
+        stroke: color(color_text_primary);
+      }
+
+      path {
+        stroke: color(color_text_primary);
+      }
+    }
+
+    span {
+      position: absolute;
+      display: flex;
+      width: 20px;
+      height: 20px;
+      border: 2px solid color(color_border_secondary);
+      border-radius: 50%;
+      background-color: color(color_background_secondary);
+      color: color(color_text_color_background);
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      right: -5px;
+      top: -5px;
+    }
+  }
+
+  .cartItem {
+    padding-top: 3px;
+
+    .sumCount {
+      padding-top: 3px;
+      color: color(color_text_primary);
+      font-weight: 400;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import 'styles/variables.scss';
+
+  @mixin bgWhite {
+    background-color: #FFF;
+  }
+
+  @mixin mediumSize {
+    width: 220px;
+  }
+
+  @mixin largeSize {
+    width: 300px;
+  }
+
+  @mixin backgroundImage($bgSize: 100% 100%) {
+    background-repeat: no-repeat;
+    background-size: $bgSize;
+  }
+
+  @mixin pcScreen {
+    @media screen and (max-width: screenWidth(pc)) {
+      @content;
+    }
+  }
+
+  @mixin tabletScreen {
+    @media screen and (max-width: screenWidth(tablet)) {
+      @content;
+    }
+  }
+
+  @mixin ipadScreen {
+    @media screen and (max-width: screenWidth(ipad)) {
+      @content;
+    }
+  }
+
+  @mixin phoneScreen {
+    @media screen and (max-width: screenWidth(phone)) {
+      @content;
+    }
+  }
+
+  @mixin SEScreen {
+    @media screen and (max-width: screenWidth(SE)) {
+      @content;
+    }
+}

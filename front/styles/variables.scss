@@ -1,0 +1,75 @@
+$colors: (
+        color_text_primary: #646464,
+        color_text_primary_active: #9BACC6,
+        color_text_secondary: #ffc850,
+        color_text_disable_hints: #A0A0AD,
+        color_text_link: #03a6d8,
+        color_text_link_hover: #03a6d8,
+        color_text_color_background: #ffffff,
+        color_text_color_header: #000000,
+        color_secondary: #9BACC6,
+  //colors border
+        color_border_primary: #CECED6, //0.8
+        color_border_primary_hover: #646464, //0.8
+        color_border_primary_focus: #646464, //0.8
+        color_border_secondary: #ffffff,
+        color_border_bottom: #e1e1e1,
+        color_border_modal: #9BACC6,
+        color_shadow_primary: rgba(0, 0, 0, 0.2),
+        color_payment_mir_primary: #4DB45E,
+        color_payment_mir_stop20: #00B4E6,
+        color_payment_mir_stop22: #088CCB,
+        color_payment_visa_st0: #1b2fce,
+        color_payment_visa_st1: #EFC75E,
+        color_social_hover_insta: #FD5949,
+        color_social_hover_vk: #597da3,
+        color_social_hover_ok: #ed812b,
+        color_social_hover_fb: #3b5998,
+        color_social_hover_yt: #c4302b,
+  //background
+        color_background_primary: #ffffff,
+        color_background_primary_hover: #9BACC6,
+        color_background_secondary: #9BACC6,
+        color_background_tertiary: #646464,
+        color_background_wrapper_modal: rgba(255, 255, 255, 0.7),
+        color_background_subscribe: #f24040,
+        color_background_primary_dark: #000000,
+        color_login_background: #f1f1f1,
+        color_icon_primary: #737381,
+        color_icon_primary_hover: #f24040,
+        color_icon_disable_hints: #CECED6,
+        color_icon_link_primary: #00c3ff,
+        color_icon_link_primary_hover: #00c3ff,
+        color_icon_link_secondary: #f24040,
+        color_icon_link_secondary_hover: #f24040,
+);
+
+$screenWidth: (
+        pc: 1920px,
+        tablet: 1300px,
+        ipad: 1024px,
+        phone: 768px,
+        SE: 400px,
+);
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-sizing($box) {
+  -webkit-box-sizing: $box;
+  -moz-box-sizing: $box;
+  box-sizing: $box;
+}
+
+
+@function screenWidth($key) {
+  @return map-get($map: $screenWidth, $key: $key);
+}
+
+@function color($key) {
+  @return map-get($map: $colors, $key: $key);
+}

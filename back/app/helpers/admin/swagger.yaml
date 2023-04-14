@@ -1,0 +1,1460 @@
+openapi: 3.0.0
+info:
+  title: Админ API Delarosa
+  version: 1.0.1
+
+servers:
+  - url: http://localhost:5000/api/v1/admin
+    description: Сервер разработки
+tags:
+  - name: Colors
+    description: Действия с цветами
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Sizes
+    description: Действия с размерами
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Brands
+    description: Действия с Брендами
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Structure
+    description: Действия с Материалами
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Category
+    description: Действия с Категориями товаров
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Users
+    description: Действия Пользователями
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+  - name: Roles
+    description: Роли пользователей
+    externalDocs:
+      description: Документация swagger
+      url: http://swagger.io
+
+paths:
+  /color:
+    post:
+      tags:
+        - Colors
+      summary: Добавление цвета
+      operationId: color_add
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  example: "Красный"
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - value
+
+      responses:
+        "200":
+          description: Цвет добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Цвет добавлен"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Colors
+      summary: Изменение цвета
+      operationId: color_edit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+                value:
+                  type: string
+                  example: "Красный"
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - _id
+                - value
+      responses:
+        "200":
+          description: Цвет изменен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Цвет изменен"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+        "404":
+          description: Цвет не найдет
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Цвет не найден"
+
+    delete:
+      tags:
+        - Colors
+      summary: Удаление цвета
+      operationId: color_delete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Цвет Удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Цвет удален"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /size:
+    post:
+      tags:
+        - Sizes
+      summary: Добавление Размера
+      operationId: color_add
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  example: "72B"
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - value
+
+      responses:
+        "200":
+          description: Размер добавлен успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Размер добавлен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Sizes
+      summary: Изменение размера
+      operationId: color_edit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+                value:
+                  type: string
+                  example: "72B"
+                sort:
+                  type: string
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - _id
+                - value
+      responses:
+        "200":
+          description: Размер изменен успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Размер изменен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    delete:
+      tags:
+        - Sizes
+      summary: Удаление размера
+      operationId: color_delete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Размер удален успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Размер удален успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /brand:
+    post:
+      tags:
+        - Brands
+      summary: Добавление бренда
+      operationId: brands_add
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Coco"
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+                logo:
+                  type: string
+                  format: binary
+              required:
+                - name
+      responses:
+        "200":
+          description: Бренд добавлен удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Размер добавлен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Brands
+      summary: Изменение бренда
+      operationId: brand_edit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: "63f7c2218201ce3f916b5540"
+                name:
+                  type: string
+                  example: "Coco"
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+                logo:
+                  type: string
+                  format: binary
+              required:
+                - name
+
+      responses:
+        "200":
+          description: Бренд изменен успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Размер изменен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    delete:
+      tags:
+        - Brands
+      summary: Удаление бренда
+      operationId: brand_delete
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Бренд Удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Бренд удален успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /structure:
+    post:
+      tags:
+        - Structure
+      summary: Добавление Материала
+      operationId: structure_add
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  example: "Эластан"
+                sort:
+                  type: number
+                  example: 10
+              required:
+                - value
+                - sort
+
+      responses:
+        "200":
+          description: Материал добавлен успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Материал добавлен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Structure
+      summary: Изменение материала
+      operationId: structure_edit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+                value:
+                  type: string
+                  example: "Эластан"
+                sort:
+                  type: string
+                  example: 10
+              required:
+                - _id
+                - value
+                - sort
+      responses:
+        "200":
+          description: Материал изменен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Материал изменен"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    delete:
+      tags:
+        - Structure
+      summary: Удаление материала
+      operationId: structure_delete
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Материал Удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Материал удален"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /category:
+    post:
+      tags:
+        - Category
+      summary: Добавление Категории
+      operationId: category_add
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Товары 18+"
+                alias:
+                  type: string
+                  example: "product18"
+                logo:
+                  type: string
+                  format: binary
+                image:
+                  type: string
+                  format: binary
+                parent_id:
+                  type: string
+                  example: ""
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - name
+                - alias
+                - parent_id
+
+      responses:
+        "200":
+          description: Категория добавлена успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Категория добавлена успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Category
+      summary: Изменение категории
+      operationId: category_edit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: "63f3578ed478917a3a675451"
+                name:
+                  type: string
+                  example: ""
+                sort:
+                  type: number
+                  example: 10
+                published:
+                  type: boolean
+                  example: true
+              required:
+                - name
+      responses:
+        "200":
+          description: Категория изменена успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Категория изменена успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    delete:
+      tags:
+        - Category
+      summary: Удаление категории
+      operationId: category_delete
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Категория удалена успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Категория удалена успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Добавление Пользователя
+      operationId: users_add
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Алексей"
+                email:
+                  type: string
+                  example: "rybolovalex@gmail.com"
+                password:
+                  type: string
+                  example: "$2b$07$12EjQBZKJpfAPsiFj28XbOITV2v6IU1Y/iJAvqBcQg2D9YqBibHGO"
+                roles:
+                  type: string
+                  example: "USER"
+                logo:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - email
+                - password
+                - roles
+
+      responses:
+        "200":
+          description: Пользователь добавлен успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Пользоатель добавлен успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    put:
+      tags:
+        - Users
+      summary: Изменение пользователя
+      operationId: users_edit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 63f1ca1baa2c68bc9cb7b10d
+                name:
+                  type: string
+                  example: "Алексей"
+                email:
+                  type: string
+                  example: "rybolovalex@gmail.com"
+                password:
+                  type: string
+                  example: "$2b$07$12EjQBZKJpfAPsiFj28XbOITV2v6IU1Y/iJAvqBcQg2D9YqBibHGO"
+                isActivated:
+                  type: boolean
+                  example: false
+                activationLink:
+                  type: string
+                  example: 3589c084-9e0f-437f-b1b4-d6b7367a9574
+                roles:
+                  type: string
+                  example: "USER"
+                logo:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - email
+                - password
+                - roles
+      responses:
+        "200":
+          description: Категория изменена успешно
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Категория изменена успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+    delete:
+      tags:
+        - Users
+      summary: Удаление пользователя
+      operationId: users_delete
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: '63f30bb9bf3855889896067b'
+              required:
+                - _id
+      responses:
+        "200":
+          description: Пользователь удален
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Пользователь удален успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /roles:
+    get:
+      tags:
+        - Roles
+      summary: Получение всех ролей
+      operationId: roles_all
+      security:
+        - bearerAuth: [ ]
+      responses:
+        "200":
+          description: Роли получены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Роли получены"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /roles/{id}:
+    get:
+      tags:
+        - Roles
+      summary: Получение роли по id
+      operationId: roles_id
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Numeric ID of the user to get
+
+      responses:
+        "200":
+          description: Роль получена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Роли получены"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+  /user_is_activated:
+    put:
+      tags:
+        - Users
+      summary: Делаем пользователя активным или не активным
+      operationId: users_is_activated
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 63f1ca1baa2c68bc9cb7b10d
+                isActivated:
+                  type: boolean
+                  example: false
+              required:
+                - id
+                - isActivated
+      responses:
+        "200":
+          description: Активация успешно прошла
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 200
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Категория изменена успешно"
+
+        "401":
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasError:
+                    type: boolean
+                    example: true
+                  status:
+                    type: number
+                    example: 400
+                  response:
+                    type: array
+                    example: [ ]
+                  message:
+                    type: string
+                    example: "Ошибка авторизации"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "token"
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid, or the user does not have access to perform the action
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Unauthorized"
+    NotFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Not Found"

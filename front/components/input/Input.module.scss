@@ -1,0 +1,108 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.theme__search {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  .label_block {
+
+    label {
+      position: absolute;
+      font-size: 14px;
+      top: 13px;
+      left: 20px;
+      color: gray;
+      transition: all 0.3s;
+    }
+  }
+
+  input {
+    border: 1px solid color(color_border_primary);
+    padding: 10px 220px 10px 20px;
+    width: 100%;
+    border-radius: 20px;
+    transition: all 0.3s;
+    color: color(color_text_primary);
+
+    &:not(:placeholder-shown) + div label {
+      transition: all 0.3s;
+      left: 20px;
+      opacity: 0;
+    }
+
+    &:focus {
+      & + div label {
+        transition: all 0.3s;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.theme__primary {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  .label_block {
+    width: 100%;
+    position: absolute;
+
+
+    svg {
+      left: 10px;
+      top: 22px;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+
+      path {
+        fill: color(color_icon_primary);
+      }
+
+      line {
+        stroke: color(color_icon_primary)
+      }
+    }
+
+    label {
+      position: absolute;
+      font-size: 14px;
+      top: 28px;
+      left: 45px;
+      color: gray;
+      transition: all 0.3s;
+      cursor: text;
+    }
+  }
+
+  input {
+    border: 1px solid color(color_border_primary);
+    width: 100%;
+    border-radius: 20px;
+    transition: all 0.3s;
+    color: color(color_text_primary);
+    background-color: #eee;
+    padding: 12px 15px 12px 45px;
+    margin: 15px 0 0 0;
+
+    &:not(:placeholder-shown) + div label {
+      transition: all 0.3s;
+      left: 20px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:focus {
+      & + div label {
+        transition: all 0.3s;
+        font-size: 14px;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+}

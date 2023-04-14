@@ -1,0 +1,1 @@
+docker-compose exec -T mongodb mongodump --username root --password RY045912LO --archive --gzip --db delarosa > backup/dump.gz

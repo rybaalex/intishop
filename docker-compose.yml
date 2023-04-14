@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+  nginx:
+    build:
+      context: ./front/deploy/.nginx/
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - delarosa
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=RY045912LO
+      - MONGO_INITDB_DATABASE=delarosa
+    volumes:
+      - ./delarosa_db:/data/db
+      - ./backup:/backup
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    container_name: delarosadb
+    command: [ --auth ]
+    restart: on-failure
+    networks:
+      - delarosa
+  backend:
+    depends_on:
+      - nginx
+      - mongodb
+    build:
+      context: ./back/
+      dockerfile: Dockerfile
+    container_name: backend
+    networks:
+      - delarosa
+  frontend:
+    depends_on:
+      - nginx
+      - backend
+    build:
+      context: ./front/
+    ports:
+      - "3001:3001"
+    command: dev
+    container_name: frontend
+    networks:
+      - delarosa
+networks:
+  delarosa:
+    driver: bridge
+volumes:
+  mongodb:

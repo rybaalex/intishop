@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.container {
+  padding: 16px 16px 16px 20px;
+  background: rgba(0, 0, 0, 0.48);
+  position: fixed;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.message_container {
+  display: flex;
+  align-items: center;
+}
+
+.message {
+  color: $TextDayColorBG;
+  @extend %AllBodyText;
+  letter-spacing: 0.4px;
+  text-align: justify;
+}
+
+.btn {
+  letter-spacing: 0.4px;
+  min-width: 105px;
+  margin-left: 8px;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.hide {
+  z-index: -10;
+  opacity: 0;
+}
