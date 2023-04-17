@@ -1,7 +1,7 @@
 const userService = require("../services/user.service");
-const ApiError = require("../exceptions/api-error");
-const UserDto = require("../dtos/user.dto");
-const responseDto = require("../dtos/response.dto");
+const ApiError = require("../../exceptions/api-error");
+const UserDto = require("../../dtos/user.dto");
+const responseDto = require("../../dtos/response.dto");
 
 class UserController {
   async signUp(req, res, next) {

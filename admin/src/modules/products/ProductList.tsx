@@ -3,7 +3,6 @@ import {
   List, TextField
 } from "react-admin";
 
-
 import { PublishedBooleanField } from "../../components/fields/PublishedBooleanField";
 import * as React from "react";
 import { ProductEdit } from "./ProductEdit";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface IInputProps {
   type?: "text" | "file" | "hidden" | "submit" | "password" | "number"|string;

@@ -1,15 +1,16 @@
 $colors: (
-        color_text_primary: #646464,
-        color_text_primary_active: #9BACC6,
-        color_text_secondary: #ffc850,
+        color_text_primary: #999999,
+        color_text_primary_active: #A1B4CE,
+        color_text_secondary: #FFFFFF,
         color_text_disable_hints: #A0A0AD,
         color_text_link: #03a6d8,
         color_text_link_hover: #03a6d8,
         color_text_color_background: #ffffff,
         color_text_color_header: #000000,
         color_secondary: #9BACC6,
+
   //colors border
-        color_border_primary: #CECED6, //0.8
+        color_border_primary: #A1B4CE, //0.8
         color_border_primary_hover: #646464, //0.8
         color_border_primary_focus: #646464, //0.8
         color_border_secondary: #ffffff,
@@ -27,9 +28,9 @@ $colors: (
         color_social_hover_fb: #3b5998,
         color_social_hover_yt: #c4302b,
   //background
-        color_background_primary: #ffffff,
-        color_background_primary_hover: #9BACC6,
-        color_background_secondary: #9BACC6,
+        color_background_primary: #A1B4CE,
+        color_background_primary_hover: #FFFFFF,
+        color_background_secondary: #FFFFFF,
         color_background_tertiary: #646464,
         color_background_wrapper_modal: rgba(255, 255, 255, 0.7),
         color_background_subscribe: #f24040,
@@ -64,7 +65,6 @@ $screenWidth: (
   -moz-box-sizing: $box;
   box-sizing: $box;
 }
-
 
 @function screenWidth($key) {
   @return map-get($map: $screenWidth, $key: $key);

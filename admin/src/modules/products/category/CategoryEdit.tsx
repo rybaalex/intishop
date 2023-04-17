@@ -11,7 +11,7 @@ import { Box } from "@mui/material";
 import { RichTextInput } from "ra-input-rich-text";
 import { PreviewImage } from "../../../components/fields/PreviewImage";
 import { FC, useEffect, useState } from "react";
-import { useGetList, SelectInput } from "react-admin";
+import { SelectInput } from "react-admin";
 
 const CategoryEdit: FC = () => {
   const record = useRecordContext();

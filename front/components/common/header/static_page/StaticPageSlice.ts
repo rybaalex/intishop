@@ -6,10 +6,8 @@ import {
 } from "types/nav.d";
 
 const initialState: INavResponse = {
-    customErrorCode: 0,
-    systemErrorMessage: "",
-    hasError: false,
     errorMessage: "",
+    hasError: false,
     response: []
 };
 

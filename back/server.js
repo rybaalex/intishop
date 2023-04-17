@@ -5,10 +5,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./app/routes/index");
-const routerAdmin = require("./app/routes/admin");
+const routerAdmin = require("./admin/app/routes/admin");
 
 
-const errorMiddleware = require("./app/middlewares/error.middleware");
+const errorMiddleware = require("./middlewares/error.middleware");
 //setting DB
 const PORT = process.env.SERVER_PORT || 8080;
 const APP_URL = process.env.APP_URL;
@@ -29,7 +29,7 @@ app.use("/api/v1", router);
 app.use("/api/v1/admin", routerAdmin);
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 if (process.env.NODE_ENV === "dev") {
-  app.use("/swagger", require("./app/helpers/swager"));
+  app.use("/swagger", require("./helpers/swager"));
 }
 
 app.use(errorMiddleware);

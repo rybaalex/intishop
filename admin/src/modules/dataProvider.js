@@ -29,7 +29,6 @@ const dataProvider = {
     return { data: json.response };
   }),
   getList: async (resource, params) => {
-    console.log("params", params);
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     const query = {

@@ -1,49 +1,44 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { Container } from "components/common/container";
-import { useAppSelector } from "store/hooks";
 import Styles from "./Header.module.scss";
-import { INavItem } from "../../../types/nav.d";
 import { Logo } from "components/common/header/logo/Logo";
-import { StaticPageContainer } from "components/common/header/static_page/StaticPageContainer";
-import { getStaticPage } from "components/common/header/static_page/StaticPageSlice";
-import { Link } from "components/link";
-import { useModal } from "store/hooks/useModal";
-import { FormCallBack, Modal } from "components/modal";
 import SearchContainer from "components/common/header/search/SearchContainer";
 import { HeartIcon } from "components/icons";
 import { AuthContainer } from "components/common/header/auth/AuthContainer";
 import { MiniCart } from "components/common/header/minicart";
+import { Button } from "components/button";
+import { Catalog } from "components/common/header/catalog";
+import { useToggle } from "store/hooks/useToggle";
+import { StaticPageContainer } from "components/common/header/static_page/StaticPageContainer";
 
-const content = <FormCallBack />;
-
+const HamburgerMenu: FC = () => {
+  return <div className={Styles.hamburgerMenu}>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>;
+};
 const HeaderContainer: FC = () => {
-    const staticPageData = useAppSelector(getStaticPage);
-    const [staticPage, setStaticPage] = useState<INavItem[]>(staticPageData.response);
-    const { isShow, toggle } = useModal();
-    useEffect(() => {
-      setStaticPage(staticPage.filter(e => e.isHeader));
-    }, []);
+    const [stateMenu, toggleMenu] = useToggle(false);
+
     return (
       <Container className={Styles.section_header}>
         <Container className="wrapper" el={"div"}>
-          <div className={Styles.top_nav}>
-            <ul>
-              {!staticPageData.hasError && staticPage.map(e => {
-                return <StaticPageContainer {...e} key={e._id} />;
-              })}
-            </ul>
-            <div className={Styles.block_contacts}>
-
-              <Link onClick={toggle}>
-                Заказать звонок:
-              </Link>
-
-              <Link
-                url={"tel:" + process.env.NEXT_PUBLIC_PHONE}>{process.env.NEXT_PUBLIC_PHONE}</Link>
-            </div>
-          </div>
-
+          <StaticPageContainer />
           <div className={Styles.header}>
+            <div className={Styles.header__menu}
+                 onMouseEnter={() => toggleMenu()}
+                 onMouseLeave={() => toggleMenu()}
+            >
+              <Button
+                theme={"chips"}
+                link={"category"}
+                color={"primary"}
+                textAlign={"justify"}
+                customClass={`${Styles.animated_svg} ${stateMenu ? Styles.active : ""}`}
+              >Каталог <HamburgerMenu /></Button>
+              <Catalog isShowMenu={stateMenu} />
+            </div>
             <div className={Styles.header__logo}>
               <Logo />
             </div>
@@ -60,14 +55,6 @@ const HeaderContainer: FC = () => {
             </div>
           </div>
         </Container>
-
-        <Modal
-          isShow={isShow}
-          hide={toggle}
-          modalContent={content}
-          headerText={"Заказать обратный звонок"}
-        />
-
       </Container>
     );
   }

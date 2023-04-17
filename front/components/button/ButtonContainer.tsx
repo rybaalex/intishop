@@ -12,6 +12,8 @@ const ButtonContainer: FC<ButtonI> = ({
                                           onClick = () => {
                                           },
                                           color = "white",
+  customClass='',
+  textAlign="center",
                                           theme = 'square',
                                           link,
                                           ...attrs
@@ -24,14 +26,14 @@ const ButtonContainer: FC<ButtonI> = ({
                 router?.push(`${link}`).then();
             } else return onClick(evt);
         };
-    const resTheme = theme + '_' + color;
+    const splitTheme = theme + '_' + color;
     return (
         <button
             {...attrs}
             type={type}
             disabled={disabled}
             onClick={onClickBtn()}
-            className={`${Styles[resTheme]}`}
+            className={`${Styles[splitTheme]} ${textAlign?Styles[textAlign]:''} ${customClass}`}
         >
             {children}
         </button>

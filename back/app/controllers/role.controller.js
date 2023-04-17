@@ -1,8 +1,8 @@
 const roleService = require("../services/role.service");
-const ApiError = require("../exceptions/api-error");
-const responseDto = require("../dtos/response.dto");
-const RolesDto = require("../dtos/roles.dto");
-const CodeErrors = require("../exceptions/code_errors");
+const ApiError = require("../../exceptions/api-error");
+const responseDto = require("../../dtos/response.dto");
+const RolesDto = require("../../dtos/roles.dto");
+const CodeErrors = require("../../exceptions/code_errors");
 
 class RolesController {
   async getRoles(req, res, next) {
