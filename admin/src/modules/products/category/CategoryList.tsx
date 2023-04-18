@@ -20,8 +20,9 @@ const CategoryList = () => {
   return (<List
     title={"Список категорий"}
     actions={<CategoryActions />}
-    aside={<CategoriesASide />}
+    aside={<CategoriesASide  />}
     filters={CategorySearch}
+    perPage={50}
     sort={{ field: "sort", order: "ASC" }}>
     <Datagrid expand={<CategoryEdit />} expandSingle rowClick="edit">
       <CustomImage source="logo" uploads_name={"categories"} label={"Логотип"} sortable={false} />

@@ -60,7 +60,8 @@ class CategoryService {
         sort: body.sort,
         logo: body.logo,
         image_menu_background: body.image_menu_background,
-        alias: body.alias
+        alias: body.alias,
+        parent_id: body.parent_id
       }
     });
   }
