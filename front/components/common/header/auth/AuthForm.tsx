@@ -44,9 +44,8 @@ const AuthForm = () => {
         password: value.passwordSingUp,
         name: value.nameSingUp
       };
-      Register(convertData).then(data => {
+      Register(convertData).then(() => {
           setRequestSingUpError("");
-          console.log("data", data.data);
         }
       ).catch(err => {
         setRequestSingUpError(err.response.data.message);

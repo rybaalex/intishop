@@ -18,7 +18,7 @@
   .modal_dialog {
     width: 100%;
     border-radius: 10px;
-    background: color(color_background_primary);
+    background: color(color_background_secondary);
     position: relative;
     max-height: calc(100vh - 40px);
     text-align: left;
@@ -44,10 +44,10 @@
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
-        line-height: 0.5;
+        line-height: 1;
         color: color(color_text_primary);
         border-bottom: 1px solid color(color_border_secondary);
-        padding-bottom: 5px;
+        padding: 5px 0;
         text-transform: uppercase;
       }
 
@@ -56,6 +56,21 @@
         background: none;
         width: 16px;
         height: 16px;
+        margin-top: -5px;
+        transition: all 0.3s;
+        svg{
+          path{
+            fill: color(color_text_primary)
+          }
+        }
+        &:hover{
+          svg{
+            path{
+              transition: all 0.3s;
+              fill: color(color_background_error)
+            }
+          }
+        }
       }
     }
 

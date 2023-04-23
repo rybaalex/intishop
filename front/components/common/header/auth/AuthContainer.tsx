@@ -16,7 +16,7 @@ const AuthContainer: FC = () => {
         type={"button"}
         onClick={toggle}
       >
-        <UserIcon /> <span>Вход</span>
+        <span>Вход</span> <UserIcon />
       </Button>
       <Modal
         isShow={isShow}

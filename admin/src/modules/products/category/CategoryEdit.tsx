@@ -55,9 +55,6 @@ const CategoryEdit: FC = () => {
           </Box>
         </Box>
         <RichTextInput source="description" label={"Описание категории"} fullWidth />
-        <ImageInput source="logo" label={"Логотип категории"} fullWidth>
-          <PreviewImage uploads_name={"categories"} />
-        </ImageInput>
         <ImageInput source="image_menu_background" label={"Картинка для фона меню"} fullWidth sx={{ mt: 3 }}>
           <PreviewImage uploads_name={"categories"} />
         </ImageInput>

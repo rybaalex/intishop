@@ -9,31 +9,33 @@
   position: relative;
   justify-content: space-between;
   z-index: 55;
+  padding: 0 80px 0 130px;
 
   input {
+    border: 1px solid color(color_text_primary);
+color: color(color_background_tertiary);
     &:focus + div {
       display: none;
     }
 
     &:focus {
-      border: 1px solid color(color_text_primary);
+      border: 1px solid color(color_text_primary_active);
     }
   }
 
   .search_for_example {
     display: flex;
     position: absolute;
-    right: 20px;
+    right: 90px;
 
-    .pointer{
-      pointer-events: none;
+    .pointer {
     }
+
     span {
       font-size: 12px;
       color: color(color_text_primary);
       display: flex;
       align-items: center;
-      cursor: pointer;
       transition: all 0.3s;
 
       &.active {
@@ -70,13 +72,13 @@
       &:hover {
 
         path {
-          fill: black;
+          fill: color(color_text_primary_active);
         }
       }
 
       path {
         transition: all 0.3s;
-        fill: #646464;
+        fill: color(color_background_tertiary);
       }
     }
   }

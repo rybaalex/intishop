@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import ReactDOM from "react-dom";
 import Styles from "./Modal.module.scss";
 import { IModalProps } from "./Modal.d";
-import { CrossIcon } from "components/icons";
+import { CloseIcon, CrossIcon } from "components/icons";
 
 
 const Modal: FC<IModalProps> = ({
@@ -21,7 +21,7 @@ const Modal: FC<IModalProps> = ({
         <div className={Styles.modal_header}>
           <h3 className={Styles.modal_title}>{headerText}</h3>
           <span className={Styles.modal_close} onClick={hide}>
-            <CrossIcon />
+            <CloseIcon />
           </span>
         </div>
         <div className={Styles.modal_body}>

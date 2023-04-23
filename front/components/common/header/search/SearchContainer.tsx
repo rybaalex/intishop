@@ -6,8 +6,9 @@ import { Input } from "components/input";
 
 const SearchContainer: FC = () => {
   const [searchExampleShow, setSearchExampleShow] = useState<boolean>(true);
+  const [dataSearch, setDataSearch] = useState<string>(undefined);
 
-  const [dataSearch, setDataSearch] = useState<string>("");
+
   return (
     <Container el={"div"} className={Styles.search_in_site}>
       <Input
@@ -22,10 +23,10 @@ const SearchContainer: FC = () => {
         value={dataSearch}
       />
       <div className={Styles.search_for_example}>
-        <span className={`${!searchExampleShow && Styles.active} ${Styles.pointer}`}>
+        <span className={`${!searchExampleShow && Styles.active}`}>
           Например,
           <span className={Styles.search_span}>
-            <label htmlFor="search_in_site">нижнее белье</label>
+            <label htmlFor="search_in_site" onClick={() => setDataSearch("нижнее белье")}>нижнее белье</label>
           </span>
         </span>
         <picture className={Styles.picture_component_heart}>

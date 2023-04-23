@@ -1,18 +1,23 @@
 @import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
+.container_header {
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+}
+
 .section_header {
   border-top: 3px solid color(color_border_secondary);
 
   .header {
     display: grid;
-    grid-template-columns: 184px 240px 1fr 200px auto;
-    gap: 20px;
+    grid-template-columns: 240px 1fr 220px auto;
+    gap: 10px;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 20px 0 0 0;
     white-space: nowrap;
-    position: relative;
+    width: 100%;
 
     &__nav {
       display: flex;
@@ -38,14 +43,14 @@
 
     &__logo {
       max-width: 300px;
+      margin-left: 26px;
     }
 
     &__contacts {
-      margin-right: 10px;
       height: 40px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
 
       .block_favourites {
         position: relative;
@@ -55,8 +60,8 @@
           transition: all 0.3s;
 
           svg {
-            width: 32px;
-            height: 32px;
+            width: 35px;
+            height: 38px;
 
             path {
               transition: all 0.3s;
@@ -91,13 +96,18 @@
         }
 
         svg {
-          width: 32px;
-          height: 32px;
+          width: 35px;
+          height: 38px;
 
           path {
-            fill: color(color_text_primary);
+            fill: color(color_background_tertiary);
           }
         }
+      }
+
+      .separatop {
+        border: 1px solid color(color_border_tertiary);
+        height: 60%;
       }
     }
 
@@ -161,15 +171,21 @@
   }
 
   .animated_svg {
+    font-size: 20px;
+    line-height: 12px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+
     &.active {
       background-color: color(color_background_secondary);
-      color: color(color_text_primary);
+      color: color(color_text_primary_active);
       border-radius: 20px 20px 0 0;
       border-bottom: none;
 
       .hamburgerMenu {
         span {
-          background-color: color(color_text_primary);
+          background-color: color(color_text_primary_active);
 
           &:nth-of-type(1) {
             width: 100%;
@@ -194,7 +210,7 @@
     &:hover {
       .hamburgerMenu {
         span {
-          background-color: color(color_text_primary);
+          background-color: color(color_text_primary_active);
           height: 1px;
           margin: 2px 0;
           text-align: center;
@@ -247,8 +263,6 @@
     }
   }
 }
-
-
 
 
 
