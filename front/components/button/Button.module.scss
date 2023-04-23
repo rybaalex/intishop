@@ -95,38 +95,35 @@
 
 .auth {
   &_auth {
-    background-color: color(color_login_background);
+    background-color: color(color_background_primary);
+    border: 1px solid color(color_background_primary);
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex;
-    gap: 5px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
-    color: color(color_text_primary);
+    color: color(color_text_secondary);
 
     svg {
-      g {
-        path {
-          transition: all 0.3s;
-          fill: color(color_text_primary);
-        }
+      path {
+        transition: all 0.3s;
+        fill: color(color_background_icon_auth);
       }
     }
 
     &:hover {
-      color: color(color_text_color_background);
-      background-color: color(color_text_primary_active);
+      color: color(color_text_primary_active);
+      background-color: color(color_background_secondary);
 
       svg {
         transition: all 0.3s;
 
-        g {
-          path {
-            transition: all 0.3s;
-            fill: color(color_text_color_background);
-          }
+        path {
+          transition: all 0.3s;
+          fill: color(color_text_primary_active);
         }
       }
 

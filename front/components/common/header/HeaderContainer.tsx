@@ -25,33 +25,37 @@ const HeaderContainer: FC = () => {
       <Container className={Styles.section_header}>
         <Container className="wrapper" el={"div"}>
           <StaticPageContainer />
-          <div className={Styles.header}>
+          <div className={Styles.container_header}>
             <div className={Styles.header__menu}
                  onMouseEnter={() => toggleMenu()}
                  onMouseLeave={() => toggleMenu()}
             >
               <Button
                 theme={"chips"}
-                link={"category"}
+                link={"catalog"}
                 color={"primary"}
                 textAlign={"justify"}
                 customClass={`${Styles.animated_svg} ${stateMenu ? Styles.active : ""}`}
               >Каталог <HamburgerMenu /></Button>
               <Catalog isShowMenu={stateMenu} />
             </div>
-            <div className={Styles.header__logo}>
-              <Logo />
-            </div>
-            <SearchContainer />
-            <div className={Styles.header__contacts}>
-              <div className={Styles.block_favourites}>
-                <HeartIcon />
-                <div className={Styles.count}><span>9+</span></div>
+            <div className={Styles.header}>
+
+              <div className={Styles.header__logo}>
+                <Logo />
               </div>
-              <AuthContainer />
-            </div>
-            <div>
-              <MiniCart />
+              <SearchContainer />
+              <div className={Styles.header__contacts}>
+                <AuthContainer />
+                <div className={Styles.block_favourites}>
+                  <HeartIcon />
+                  <div className={Styles.count}><span>9+</span></div>
+                </div>
+                <div className={Styles.separatop}></div>
+              </div>
+              <div>
+                <MiniCart />
+              </div>
             </div>
           </div>
         </Container>

@@ -58,7 +58,6 @@ class CategoryService {
         name: body.name,
         description: body.description,
         sort: body.sort,
-        logo: body.logo,
         image_menu_background: body.image_menu_background,
         alias: body.alias,
         parent_id: body.parent_id

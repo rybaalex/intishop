@@ -4,7 +4,6 @@ class CategoriesDto {
   description;
   sort;
   published;
-  logo;
   image_menu_background;
   alias;
   parent_id;
@@ -13,7 +12,6 @@ class CategoriesDto {
     this.alias = model.alias;
     this.name = model.name;
     this.id = model._id;
-    this.logo = model.logo;
     this.image_menu_background = model.image_menu_background;
     this.description = model.description;
     this.sort = model.sort;

@@ -2,11 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const categorySchema = new Schema({
   name: { type: String, required: true, index: true },
-  logo: {
-    img: { type: String },
-    title: { type: String, default: "" },
-    mimeType: { type: String, default: "" }
-  },
   image_menu_background: {
     img: { type: String },
     title: { type: String, default: "" },

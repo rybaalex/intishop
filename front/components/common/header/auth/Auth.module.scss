@@ -8,7 +8,7 @@
 
 .container {
   h1 {
-    font-weight: bold;
+    font-weight: normal;
     margin: 0 0 20px 0;
   }
 
@@ -40,11 +40,11 @@
 
   button {
     border-radius: 20px;
-    border: 1px solid color(color_text_primary);
-    background-color: color(color_text_primary);
+    border: 1px solid color(color_border_primary);
+    background-color: color(color_background_primary);
     color: #FFFFFF;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: normal;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -52,9 +52,10 @@
 
     &:hover {
       transition: all 0.3s;
-      border: 1px solid color(color_text_primary_active);
-      background-color: color(color_text_primary_active);
-      transform: scale(0.95);
+      border: 1px solid color(color_border_primary);
+      color: color(color_text_primary_active);
+      background: none;
+     // transform: scale(0.95);
     }
 
     &:active {
@@ -67,8 +68,11 @@
 
     &.ghost {
       background-color: transparent;
-      border-color: #FFFFFF;
+      border-color: color(color_border_secondary);
       border-width: 1px;
+      &:hover{
+        background-color: color(color_background_primary_hover);
+      }
     }
   }
 
@@ -92,7 +96,7 @@
     }
 
     form {
-      background-color: #FFFFFF;
+      background-color: color(color_border_secondary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -121,7 +125,7 @@
 
       &.visible {
         opacity: 1;
-        color: color(color_text_primary_active);
+        color: color(color_text_primary);
         font-size: 14px;
         padding: 0 10px;
         box-sizing: border-box;
@@ -133,7 +137,7 @@
 
       &.input_error {
         input {
-          border: 1px solid red;
+          border: 1px solid color(color_background_error);
         }
       }
     }
@@ -153,6 +157,7 @@
       .span_visible {
         transition: all 0.5s;
         opacity: 1;
+        color: color(color_background_error);
       }
     }
   }
@@ -214,6 +219,7 @@
         text-align: center;
         top: 0;
         height: 100%;
+        background-color: color(color_background_primary);
         width: 50%;
         transform: translateX(0);
         transition: transform 0.6s ease-in-out;
@@ -226,7 +232,7 @@
       .overlay_right {
         right: 0;
         transform: translateX(0);
-        background-color: color(color_background_primary_hover);
+        background-color: color(color_background_primary);
       }
     }
   }

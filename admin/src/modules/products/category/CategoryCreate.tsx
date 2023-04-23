@@ -47,9 +47,6 @@ const CategoryCreate = () => {
         </Box>
       </Box>
       <RichTextInput source="description" label={"СЕО Описание категории"} fullWidth />
-      <ImageInput source="logo" label={"Фото категории"} name={"logo"} fullWidth>
-        <ImageField source="src" title={"title"} />
-      </ImageInput>
       <ImageInput source="image_menu_background" label={"Картинка для фона меню"} name={"image_menu_background"}
                   fullWidth sx={{ mt: 3 }}>
         <ImageField source="src" title={"title"} />
