@@ -1,11 +1,12 @@
-const StaticPageModel = require("../../models/staticpage.model");
-const ApiError = require("../../exceptions/api-error");
+const staticPageModel = require("../../models/staticpage.model");
 
 class StaticPageService {
 
   async getStaticPage(query) {
     const filter = JSON.parse(query.filter);
-    return StaticPageModel.find(filter);
+    const sort = JSON.parse(query.sort);
+    console.log("12", filter, sort);
+    return staticPageModel.find(filter).sort([sort]);
   }
 }
 

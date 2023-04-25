@@ -5,19 +5,13 @@ import { apiPath } from "utils/bootstrap";
 import * as queryString from "querystring";
 
 const getList = (resource: string, params?: IParams) => {
-  const { pagination, sort, filter }: IParams = params !== undefined ? {
-    pagination: params.pagination,
-    sort: params.sort,
-    filter: params.filter
-  } : {
-    pagination: { page: 0, perPage: 0 },
-    sort: { field: "sort", order: "DESC" },
-    filter: {}
-  };
+  const { page, perPage } = params.pagination || { page: 1, perPage: 0 };
+  const { field, order } = params.sort || { field: "sort", order: "DESC" };
+
   const query = {
-    sort: JSON.stringify(sort),
-    range: JSON.stringify(pagination),
-    filter: JSON.stringify(filter)
+    sort: JSON.stringify([field, order]),
+    range: JSON.stringify([(page - 1) * perPage, page * perPage]),
+    filter: JSON.stringify(params.filter || {})
   };
   const url = `${apiPath}/${resource}?${queryString.stringify(query)}`;
   return clientReq.get(url)

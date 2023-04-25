@@ -15,6 +15,8 @@ import StraightenOutlinedIcon from "@mui/icons-material/StraightenOutlined";
 import AcUnitOutlinedIcon from "@mui/icons-material/AcUnitOutlined";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import ViewCarouselOutlinedIcon from '@mui/icons-material/ViewCarouselOutlined';
+import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import {
   DashboardMenuItem,
   MenuItemLink,
@@ -24,11 +26,12 @@ import {
 
 import SubMenu from "./SubMenu";
 
-type MenuName = "menuCatalog" | "menuSales" | "menuCustomers" | "menuDownloads";
+type MenuName = "menuMarketing" | "menuCatalog" | "menuSales" | "menuCustomers" | "menuDownloads";
 
 const Menu = ({ dense = false }: MenuProps) => {
   const [state, setState] = useState({
-    menuCatalog: true,
+    menuCatalog: false,
+    menuMarketing: true,
     menuSales: false,
     menuCustomers: false,
     menuDownloads: false
@@ -129,6 +132,21 @@ const Menu = ({ dense = false }: MenuProps) => {
           state={{ _scrollToTop: true }}
           primaryText={"Этикетки"}
           leftIcon={<BookmarkBorderOutlinedIcon />}
+          dense={dense}
+        />
+      </SubMenu>
+      <SubMenu
+        handleToggle={() => handleToggle("menuMarketing")}
+        isOpen={state.menuMarketing}
+        name="Маркетинг"
+        icon={<TimelineOutlinedIcon />}
+        dense={dense}
+      >
+        <MenuItemLink
+          to="/banners"
+          state={{ _scrollToTop: true }}
+          primaryText={"Баннеры"}
+          leftIcon={<ViewCarouselOutlinedIcon />}
           dense={dense}
         />
       </SubMenu>

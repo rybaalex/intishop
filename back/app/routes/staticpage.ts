@@ -4,7 +4,7 @@ const router = Router();
 const staticPageController = require("../controllers/staticpage.controller");
 
 router.get("/staticpages",
-  staticPageController.getStaticPage);
+  staticPageController.getStaticPages);
 
 module.exports = router;
 

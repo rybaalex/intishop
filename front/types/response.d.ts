@@ -11,8 +11,10 @@ interface IPage {
   hasPreviousPage: boolean;
   hasNextPage: boolean;
 }
-
-interface IObjects {
+interface ISSRData {
+  data: IResponse;
+}
+/*interface IObjects {
   address: string;
   categories: [{ title?: string }];
   imageUrl: string;
@@ -25,5 +27,5 @@ interface IImages {
   pc?: string;
   ipad?: string;
   mobile?: string;
-}
-export { IResponse, IPage, IObjects, IImages };
+}*/
+export { IResponse, IPage, ISSRData };

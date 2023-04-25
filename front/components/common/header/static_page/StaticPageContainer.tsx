@@ -1,4 +1,4 @@
-import { INavItem } from "types/nav.d";
+import { INavItem } from "types/nav";
 import { FC, useState } from "react";
 import { Link } from "components/link";
 import { useAppSelector } from "store/hooks";
@@ -13,7 +13,7 @@ const StaticPageContainer: FC = () => {
   const [staticPage] = useState<INavItem[]>(staticPageData.response);
   const { isShow, toggle } = useModal();
   const content = <FormCallBack />;
-
+  console.log("staticPageData", staticPageData);
   return (<div className={Styles.top_nav}>
       <ul>
         {!staticPageData.hasError && staticPage.map(e => {
