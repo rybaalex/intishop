@@ -1,4 +1,4 @@
-import { INavItem } from "types/nav.d";
+import { INavItem } from "types/nav";
 import { FC } from "react";
 import { Link } from "components/link";
 

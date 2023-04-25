@@ -1,10 +1,9 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useGetList } from "store/hooks/useGetList";
 import { ConnectError } from "components/connect_error";
 import Styles from "./Catalog.module.scss";
 import { IResponse } from "types/response";
 import { CatalogItems } from "components/common/header/catalog/CatalogItems";
-
 
 interface ICatalogMenu {
   isShowMenu: boolean;

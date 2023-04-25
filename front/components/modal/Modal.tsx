@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import ReactDOM from "react-dom";
 import Styles from "./Modal.module.scss";
 import { IModalProps } from "./Modal.d";
-import { CloseIcon, CrossIcon } from "components/icons";
+import { CloseIcon } from "components/icons";
 
 
 const Modal: FC<IModalProps> = ({

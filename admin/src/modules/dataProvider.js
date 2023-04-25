@@ -31,6 +31,7 @@ const dataProvider = {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
+
     const query = {
       sort: JSON.stringify([field, order]),
       range: JSON.stringify([(page - 1) * perPage, page * perPage]),
@@ -72,28 +73,14 @@ const dataProvider = {
 
   create: async (resource, params) => {
     let result = params.data;
-    if (typeof params.data.logo == "object") {
-      await convertFileToBase64(params.data.logo).then(base64 => {
-        result.logo = {
+    if (typeof params.data.image == "object") {
+      await convertFileToBase64(params.data.image).then(base64 => {
+        result.image = {
           img: base64.toString(),
-          title: `${params.data.logo.title}`,
-          mimeType: `${params.data.logo.rawFile.type}`
+          title: `${params.data.image.title}`,
+          mimeType: `${params.data.image.rawFile.type}`
         };
       });
-
-    } else {
-
-    }
-
-    if (typeof params.data.image_menu_background == "object") {
-      await convertFileToBase64(params.data.image_menu_background).then(base64 => {
-        result.image_menu_background = {
-          img: base64.toString(),
-          title: `${params.data.image_menu_background.title}`,
-          mimeType: `${params.data.image_menu_background.rawFile.type}`
-        };
-      });
-
     } else {
 
     }
@@ -108,30 +95,18 @@ const dataProvider = {
 
   update: async (resource, params) => {
     let result = params.data;
-    if (params.data.logo && typeof params.data.logo === "object") {
-      if (params.data?.logo?.title !== params.previousData?.logo?.title) {
-        await convertFileToBase64(params.data.logo).then(base64 => {
-          result.logo = {
+    if (params.data.image && typeof params.data.image === "object") {
+      if (params.data?.image?.title !== params.previousData?.image?.title) {
+        await convertFileToBase64(params.data.image).then(base64 => {
+          result.image = {
             img: base64.toString(),
-            title: `${params.data.logo.title}`,
-            mimeType: `${params.data.logo.rawFile.type}`
+            title: `${params.data.image.title}`,
+            mimeType: `${params.data.image.rawFile.type}`
           };
         });
       }
     } else {
 
-    }
-    if (params.data.image_menu_background && typeof params.data.image_menu_background == "object") {
-      if (params.data?.image_menu_background?.title !== params.previousData?.image_menu_background?.title) {
-        await convertFileToBase64(params.data.image_menu_background).then(base64 => {
-          result.image_menu_background = {
-            img: base64.toString(),
-            title: `${params.data.image_menu_background.title}`,
-            mimeType: `${params.data.image_menu_background.rawFile.type}`
-          };
-        });
-      }
-    } else {
     }
 
     return httpClient(`${apiUrl}/${resource}`, {

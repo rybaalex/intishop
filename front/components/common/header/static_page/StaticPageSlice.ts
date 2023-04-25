@@ -3,7 +3,7 @@ import type {AppState, AppThunk} from "store/store";
 import {HYDRATE} from "next-redux-wrapper";
 import {
     INavResponse, INavSlice
-} from "types/nav.d";
+} from "types/nav";
 
 const initialState: INavResponse = {
     errorMessage: "",

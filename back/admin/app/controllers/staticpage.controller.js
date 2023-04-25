@@ -2,15 +2,18 @@ const staticPageService = require("../services/staticpage.service");
 const apiError = require("../../../exceptions/api-error");
 const responseDto = require("../../../dtos/response.dto");
 const codeErrors = require("../../../exceptions/code_errors");
+const staticPageDto = require("../../../dtos/staticpage.dto");
 
 class StaticPageController {
-  async getStaticPage(req, res, next) {
+  async getStaticPages(req, res, next) {
     try {
-      const staticPage = await staticPageService.getStaticPage();
+      const staticPage = await staticPageService.getStaticPages(req.query);
       if (staticPage.length === 0) {
         return next(apiError.BadRequest(codeErrors.noDataFound.title, codeErrors.noDataFound.code));
       }
-      responseDto.response = staticPage;
+      responseDto.response = staticPage.map(e => {
+        return new staticPageDto(e);
+      });
       return res.json(responseDto);
     } catch (e) {
       next(e);

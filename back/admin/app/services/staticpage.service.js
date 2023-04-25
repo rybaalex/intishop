@@ -1,10 +1,10 @@
 const StaticPageModel = require("../../../models/staticpage.model");
-const ApiError = require("../../../exceptions/api-error");
 
 class StaticPageService {
-
-  async getStaticPage() {
-    return StaticPageModel.find();
+  async getStaticPages(query) {
+    const filter = JSON.parse(query.filter);
+    const sort = JSON.parse(query.sort);
+    return StaticPageModel.find(filter).sort([sort]);
   }
 }
 
