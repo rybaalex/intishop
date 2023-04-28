@@ -6,51 +6,42 @@
   gap: 20px;
 
   .left_banner {
-    width: 890px;
-    min-width: 890px;
-    height: 600px;
-    background: color(background_gray);
-    border-radius: (6px);
-    display: flex;
-    flex-direction: column;
-
-    .insidePadding {
-      padding: 60px 230px 0 60px;
-
-      .title {
-        font-weight: 400;
-        font-size: 58px;
-        line-height: 60px;
-        display: flex;
-        justify-content: center;
-        letter-spacing: -0.04em;
-        color: color(black1);
-        text-transform: uppercase;
-        margin-bottom: 20px;
-      }
-
-      .block_orders {
-        display: flex;
-        word-break: break-all;
-        gap: 4px;
-        flex-flow: row wrap
-      }
-
-      .block_button {
-        display: flex;
-        gap: 12px;
-        align-items: flex-end;
-        margin: 120px 0 30px;
-
-      }
-    }
+    width: 1186px;
+    min-width: 1186px;
+    height: 392px;
+    position: relative;
+    overflow: hidden;
   }
 
   .right_banner {
     background-color: color(black1);
     border-radius: (6px);
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 
+    .label_block {
+      position: absolute;
+      z-index: 10;
+      padding: 10px 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: color(color_text_primary);
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      font-size: 14px;
+      bottom: 0;
+
+      span {
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+      }
+    }
   }
+}
+
+.gifts_container {
+  display: flex;
 }

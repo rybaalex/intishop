@@ -61,7 +61,8 @@ class BannerController {
         const FILE = new Date().getTime().toString() + body.image.title;
         fs.writeFile(DIR + FILE, req.body.image.img, "base64", () => {
         });
-        body.image.img = FILE;
+
+        body.image.desktop = FILE;
       }
       const banner = await bannerService.createBanner(body);
       responseDto.response = new bannersDto(banner);
