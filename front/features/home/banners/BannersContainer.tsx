@@ -5,16 +5,27 @@ import { IResponse } from "types/response";
 
 interface IBannerData {
   banners: IResponse;
+  gifts: IResponse;
 }
 
-const Banners: FC<IBannerData> = ({ banners }) => {
+const BannersContainer: FC<IBannerData> = ({ banners, gifts }) => {
   return <div className={Styles.banner_container}>
     <div className={Styles.left_banner}>
       <Slider response={banners.response as []} />
     </div>
     <div className={Styles.right_banner}>
-     {/* <Slider response={banners.response as []} />*/}
+      <div className={Styles.label_block}><span>Подарок на этой неделе!</span><p>Подробнее...</p></div>
+      <Slider
+        response={gifts.response as []}
+        pauseOnMouseEnter={false}
+        recurse={"moke"}
+        pagination={false}
+        timer={false}
+        label={true}
+        label_text={"Подарок"}
+      />
     </div>
   </div>;
 };
-export { Banners };
+
+export { BannersContainer };

@@ -13,7 +13,6 @@ const StaticPageContainer: FC = () => {
   const [staticPage] = useState<INavItem[]>(staticPageData.response);
   const { isShow, toggle } = useModal();
   const content = <FormCallBack />;
-  console.log("staticPageData", staticPageData);
   return (<div className={Styles.top_nav}>
       <ul>
         {!staticPageData.hasError && staticPage.map(e => {

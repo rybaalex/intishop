@@ -1,51 +1,51 @@
-@import 'styles/mixins.scss';
-@import 'styles/variables.scss';
+@import '../mixins.scss';
+@import '../variables.scss';
 
 .swiper {
   height: 100%;
+
   .swiper-wrapper {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 392px;
     z-index: 1;
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
-    img{
+
+    img {
       max-height: 100%;
       height: 100%;
     }
   }
 
   .swiper-pagination {
-    width: fit-content !important;
-    display: grid;
-    left: auto !important;
-    right: 15px;
-    gap: 6px;
-    top: calc(50% - 82px) !important;
-    height: fit-content;
+    display: flex;
+    justify-content: center;
 
     .swiper-pagination-bullet {
       width: 10px;
       height: 10px;
       text-align: center;
-      right: 15px;
       border-radius: (50%);
       line-height: 20px;
       font-size: 12px;
-      background: color(black1);
-      border: 1px solid color(white1);
+      background: color(color_background_tertiary);
+      border: 5px solid color(color_border_secondary);
       cursor: pointer;
-      margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4px);
-      opacity: 1!important;
+      opacity: 1;
+      transition: 0.3s;
     }
 
     .swiper-pagination-bullet-active {
-      background-color: color(white1);
-      border: 1px solid color(white1);
+      background-color: color(color_background_primary);
+      border: 5px solid color(color_border_secondary);
+      border-radius: (20px);
       opacity: 1;
       margin: 0 2px;
+      box-shadow: 0 0 15px rgb(0 0 0 / 10%);
+      width: 20px;
+      transition: 0.3s;
     }
   }
 
@@ -60,7 +60,7 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: color(white1);
+    color: color(color_border_secondary);
 
     svg {
       --progress: 0;
@@ -71,15 +71,15 @@
       width: 100%;
       height: 100%;
       stroke-width: 4px;
-      stroke: color(white1);
+      stroke: color(color_border_secondary);
       fill: none;
       stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
       stroke-dasharray: 125.6;
       transform: rotate(-90deg);
     }
   }
+
   .swiper-slide {
     box-sizing: (border-box);
-    padding: 50px;
   }
 }

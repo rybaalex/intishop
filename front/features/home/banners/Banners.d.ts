@@ -1,4 +1,5 @@
 import { IResponse } from "types/response";
+import { IImages } from "types/images";
 
 interface IBannerResponse extends Omit<IResponse, "response"> {
   response?: IBannerItem;
@@ -16,7 +17,7 @@ interface IImagesBannerItem {
   url?: string;
   sort?: number;
   published?: boolean;
-  image?: { img?: string };
+  image?: IImages;
 }
 
 interface IButtonItem {

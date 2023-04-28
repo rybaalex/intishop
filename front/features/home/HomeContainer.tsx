@@ -1,11 +1,30 @@
 import { Container } from "components/common/container";
 import { FC } from "react";
-import { ISSRData } from "types/response";
+import Styles from "./Home.module.scss";
+import { IResponse, ISSRData } from "types/response";
+import { Banners } from "features/home/banners";
+import { Gifts } from "features/home/gift";
+import { IProduct } from "features/home/Moke";
 
+interface IGifts extends Omit<IResponse, "response"> {
+  response: IProduct[];
+}
 
-const HomeContainer: FC<ISSRData> = ({data}) => {
-  console.log("ll", data);
-  return (<Container className={"wrapper"}>Главная страница</Container>
+interface IBanners extends Omit<IResponse, "response"> {
+  response: IBanners[];
+}
+
+interface ISSRData {
+  banners?: IBanners;
+  gifts?: IGifts;
+}
+
+const HomeContainer: FC<ISSRData> = ({ banners, gifts }) => {
+  return (<Container className={"wrapper"}>
+      <div>
+        <Banners banners={banners} gifts={gifts} />
+      </div>
+    </Container>
   );
 };
 export { HomeContainer };

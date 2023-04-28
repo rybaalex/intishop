@@ -15,8 +15,8 @@ const CustomImage: FC<ICustomImages> = ({
                                         }) => {
 
   const record = useRecordContext();
-  return <div>{record[source as string]?.img ?
-    <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record[source as string]?.img}
+  return <div>{record[source as string]?.desktop ?
+    <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record[source as string]?.desktop}
          alt={record.name} style={{ maxHeight: "40px" }} /> :
     <NoPhotographyOutlinedIcon />}</div>;
 };
