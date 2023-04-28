@@ -14,6 +14,7 @@ class BannerController {
       responseDto.response = banner.map(e => {
         return new bannersDto(e);
       });
+      responseDto.page = [];
       return res.json(responseDto);
     } catch (err) {
       console.log("err", err);

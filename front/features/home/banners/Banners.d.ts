@@ -1,41 +1,41 @@
-import {IResponse} from "../../../types/response";
+import { IResponse } from "types/response";
 
 interface IBannerResponse extends Omit<IResponse, "response"> {
-    response?: IBannerItem;
+  response?: IBannerItem;
 }
 
 interface IBannerItem {
-    description?: string;
-    offers?: IOfferItem[],
-    button?: IButtonItem[],
-    sliders?: IImagesBannerItem[]
+  description?: string;
+  offers?: IOfferItem[],
+  button?: IButtonItem[],
+  sliders?: IImagesBannerItem[]
 }
 
 interface IImagesBannerItem {
-    title: string;
-    url: string;
-    sort?: number;
-    published?: boolean
-    image?: string
+  title?: string;
+  url?: string;
+  sort?: number;
+  published?: boolean;
+  image?: { img?: string };
 }
 
 interface IButtonItem {
-    title: string;
-    url: string;
-    sort?: number;
-    published?: boolean
+  title: string;
+  url: string;
+  sort?: number;
+  published?: boolean;
 }
 
 interface IOfferItem {
-    title: string;
-    url: string;
-    sort?: number;
-    description?: string;
-    published?: boolean
+  title: string;
+  url: string;
+  sort?: number;
+  description?: string;
+  published?: boolean;
 }
 
 interface IBannerSlice {
-    bannerState: IBannerResponse
+  bannerState: IBannerResponse;
 }
 
-export {IBannerResponse, IBannerItem, IOfferItem, IButtonItem, IImagesBannerItem, IBannerSlice}
+export { IBannerResponse, IBannerItem, IOfferItem, IButtonItem, IImagesBannerItem, IBannerSlice };
