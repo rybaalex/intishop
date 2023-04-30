@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import { Header } from "components/common";
+import { Footer } from "components/common/footer";
+import Styles from "./Layout.module.scss";
 
 const Layout: FC = ({ children }) => {
   return (
@@ -14,14 +16,17 @@ const Layout: FC = ({ children }) => {
         <title>{process.env.NEXT_PUBLIC_TITLE}</title>
         <meta name="keyword" content={process.env.NEXT_PUBLIC_KEYWORD} />
       </Head>
-      <header>
-        <Header />
-      </header>
-      <main>
-        {children}
-      </main>
-      <footer>
-      </footer>
+      <div className={Styles.wrapper}>
+        <header>
+          <Header />
+        </header>
+        <main className={Styles.content}>
+          {children}
+        </main>
+        <footer className={Styles.footer}>
+          <Footer />
+        </footer>
+      </div>
     </>
   );
 };

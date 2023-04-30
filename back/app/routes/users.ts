@@ -1,7 +1,7 @@
 const Router = require("express").Router;
 const router = Router();
-const rolesMiddleware = require("../../middlewares/banners.middleware");
-const userController = require("../../controllers/user.controller");
+const rolesMiddleware = require("../../middlewares/roles.middleware");
+const userController = require("../controllers/user.controller");
 
 router.put("/user_is_activated",
   rolesMiddleware(["ADMIN"]),
@@ -13,5 +13,11 @@ router.get("/refresh",
 router.get("/users",
   rolesMiddleware(["ADMIN"]),
   userController.getUsers);
+
+router.get("/activate/:link",
+  userController.activate);
+
+router.post("/signup",
+  userController.signUp);
 module.exports = router;
 

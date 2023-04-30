@@ -1,17 +1,17 @@
 const userService = require("../services/user.service");
-const ApiError = require("../../exceptions/api-error");
+const apiError = require("../../exceptions/api-error");
 const UserDto = require("../../dtos/user.dto");
 const responseDto = require("../../dtos/response.dto");
+const codeErrors = require("../../exceptions/code_errors");
+const { hasError } = require("../../dtos/response.dto");
 
 class UserController {
   async signUp(req, res, next) {
     try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return next(ApiError.BadRequest("Ошибка валидации", 445));
-      }
-
       const { email, password, name } = req.body;
+      if (!email || !password | !name) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
       const userData = await userService.signUp(email, password, name);
       res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
       return res.json(userData);
@@ -46,8 +46,11 @@ class UserController {
   async activate(req, res, next) {
     try {
       const activationLink = req.params.link;
-      await userService.activate(activationLink);
-      return res.redirect(process.env.APP_URL + ":" + process.env.CLIENT_PORT);
+      await userService.activate(activationLink).then(() => {
+        return res.redirect(process.env.APP_URL + ":" + process.env.CLIENT_PORT + "/auth/success");
+      }).catch(err => {
+        return res.redirect(process.env.APP_URL + ":" + process.env.CLIENT_PORT + "/auth/error?message=" + err.message);
+      });
 
     } catch (e) {
       next(e);

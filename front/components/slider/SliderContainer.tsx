@@ -30,7 +30,7 @@ const SliderContainer: FC<ISlider> = ({
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s: any, time: number, progress: number) => {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
-    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}`;
   };
   const onAutoplayTimeLeftEmpty = () => {
   };
