@@ -125,10 +125,14 @@
 
       &.visible {
         opacity: 1;
-        color: color(color_text_primary);
+        color: color(color_text_error);
+        text-transform: lowercase;
         font-size: 14px;
         padding: 0 10px;
         box-sizing: border-box;
+        &:first-letter {
+          text-transform: uppercase;
+        }
       }
     }
 

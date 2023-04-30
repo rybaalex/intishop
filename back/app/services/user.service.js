@@ -4,14 +4,14 @@ const uuid = require("uuid");
 const mailService = require("./mail.service");
 const tokenService = require("./token.service");
 const UserDto = require("../../dtos/user.dto");
-const ApiError = require("../../exceptions/api-error");
-const CodeErrors = require("../../exceptions/code_errors");
+const apiError = require("../../exceptions/api-error");
+const codeErrors = require("../../exceptions/code_errors");
 
 class UserService {
   async signUp(email, password, name) {
     const candidate = await UserModel.findOne({ email });
     if (candidate) {
-      throw ApiError.BadRequest(`Пользователь ${email} уже существует`);
+      throw apiError.BadRequest("Емайл " + email + " " + codeErrors.alreadyExists.title, codeErrors.alreadyExists.code);
     }
     const hashPassword = await bcrypt.hash(password, 7);
     const activationLink = uuid.v4();
@@ -20,8 +20,7 @@ class UserService {
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
-    //const mail = await mailService.sendActivationMail(email, `${process.env.APP_URL}/api/v1/activate/${activationLink}`);
-    //console.log("mail", mail);
+    await mailService.sendActivationMail(email, `${process.env.APP_URL}:${process.env.SERVER_PORT}/api/v1/activate/${activationLink}`).catch(err => console.log("222", err));
     return {
       ...tokens,
       user: userDto
@@ -31,7 +30,7 @@ class UserService {
   async activate(activationLink) {
     const user = await UserModel.findOne({ activationLink });
     if (!user) {
-      throw ApiError.BadRequest("Не корректная ссылка активации");
+      throw apiError.BadRequest(codeErrors.notActivatedLink.title, codeErrors.notActivatedLink.code);
     }
     user.isActivated = true;
     await user.save();
@@ -41,7 +40,7 @@ class UserService {
   async isActivated(id, isActivated) {
     const user = await UserModel.findOne({ _id: id });
     if (!user) {
-      throw ApiError.BadRequest(CodeErrors.noDataFound.title, CodeErrors.noDataFound.code);
+      throw apiError.BadRequest(codeErrors.noDataFound.title, codeErrors.noDataFound.code);
     }
     user.isActivated = isActivated;
     await user.save();
@@ -51,13 +50,13 @@ class UserService {
   async signIn(email, password) {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      throw ApiError.BadRequest("Пользователь не найден, зарегистрируйтесь", 444);
+      throw apiError.BadRequest("Пользователь не найден, зарегистрируйтесь", 444);
     }
 
     const isPassEquals = await bcrypt.compare(password, user.password);
 
     if (!isPassEquals) {
-      throw ApiError.BadRequest("Вы ввели не верный пароль", 401);
+      throw apiError.BadRequest("Вы ввели не верный пароль", 401);
     }
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
@@ -72,13 +71,13 @@ class UserService {
 
   async refresh(refreshToken) {
     if (!refreshToken) {
-      throw ApiError.UnauthorizedError();
+      throw apiError.UnauthorizedError();
     }
 
     const userData = tokenService.validateRefreshToken(refreshToken);
     const tokenFromDb = await tokenService.findToken(refreshToken);
     if (!userData || !tokenFromDb) {
-      throw ApiError.UnauthorizedError();
+      throw apiError.UnauthorizedError();
     }
 
     const user = await UserModel.findById(userData.id);

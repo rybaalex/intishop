@@ -16,10 +16,10 @@ class MailService {
   }
 
   async sendActivationMail(to, link) {
-    await this.transporter.sendMail({
-      from: process.env.SMTP_USER,
+    const info = await this.transporter.sendMail({
+      from: process.env.SMTP_USER + "@yandex.ru Секретарь",
       to,
-      subject: "Активация аккаунта на " + process.env.APP_URL,
+      subject: "Активация аккаунта интернет магазина " + process.env.SHOP_NAME,
       text: "",
       html: `<div>
         <h1>Для активации перейдите по ссылке</h1>
