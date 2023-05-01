@@ -1,5 +1,5 @@
 import Styles from "./Success.module.scss";
-import { SuccessIcon } from "components/icons";
+import { SuccessIcon, SuccessPageIcon } from "components/icons";
 import { Container } from "components/common";
 import { Button } from "components/button";
 import { useEffect, useState } from "react";
@@ -20,7 +20,7 @@ const SuccessContainer = () => {
     <div className={Styles.success__block}>
       <div className={Styles.success__item}>
         <div className={Styles.success__container}>
-          <SuccessIcon />
+          <SuccessPageIcon />
 
         </div>
         <p className={Styles.title}>Успех</p>

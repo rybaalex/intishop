@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import Head from "next/head";
-import { Header } from "components/common";
-import { Footer } from "components/common/footer";
+import { Footer, Header } from "components/common";
 import Styles from "./Layout.module.scss";
+import { HeaderContext } from "components/common/header";
 
 const Layout: FC = ({ children }) => {
   return (
@@ -20,6 +20,7 @@ const Layout: FC = ({ children }) => {
         <header>
           <Header />
         </header>
+        <HeaderContext/>
         <main className={Styles.content}>
           {children}
         </main>

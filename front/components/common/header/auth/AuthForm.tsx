@@ -1,5 +1,5 @@
 import Styles from "./Auth.module.scss";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, FC, useRef, useState } from "react";
 import { Input } from "components/input";
 import { Button } from "components/button";
 import { FormikValues, useFormik } from "formik";
@@ -9,10 +9,16 @@ import { SingInData, SingUpData } from "components/common/header/auth/AuthFieldD
 import { Login } from "service/auth/login";
 import { Register } from "service/auth/register";
 
-const AuthForm = () => {
+
+interface IAuthForm {
+  singInSuccess: () => void;
+  singUpSuccess: () => void;
+}
+
+const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
   const refContainer = useRef<HTMLInputElement>();
-  const [requestSingInError, setRequestSingInError] = useState<string>("");
-  const [requestSingUpError, setRequestSingUpError] = useState<string>("");
+  const [requestSingInError, setRequestSingInError] = useState<string>(undefined);
+  const [requestSingUpError, setRequestSingUpError] = useState<string>(undefined);
   const formikSingIn: FormikValues = useFormik({
     initialValues: {
       email: "",
@@ -22,7 +28,8 @@ const AuthForm = () => {
     validationSchema: ValidationSchemaSingIn(),
     onSubmit: (value) => {
       Login(value).then(() => {
-        setRequestSingInError("");
+        setRequestSingInError(undefined);
+        singInSuccess();
       })
         .catch(err => {
           setRequestSingInError(err.response.data.message);
@@ -45,7 +52,8 @@ const AuthForm = () => {
         name: value.nameSingUp
       };
       Register(convertData).then(() => {
-          setRequestSingUpError("");
+          setRequestSingUpError(undefined);
+          singUpSuccess();
         }
       ).catch(err => {
         setRequestSingUpError(err.response.data.message);
@@ -102,12 +110,6 @@ const AuthForm = () => {
             </div>
           );
         })}
-
-
-        {/*        <Input name={"name"} type={"text"} placeholder=" " label={"Ваше имя"} />
-        <Input name={"email1"} type={"text"} placeholder=" " label={"Email"} />
-        <Input name={"password1"} type={"text"} placeholder="" label={"Пароль"} />
-        <Input name={"confirm_password"} type={"text"} placeholder=" " label={"Подтвердите пароль"} />*/}
         <button type={"submit"}>Регистрация</button>
         <div className={`${Styles.all_error} ${requestSingUpError && Styles.visible}`}>{requestSingUpError}</div>
       </form>
