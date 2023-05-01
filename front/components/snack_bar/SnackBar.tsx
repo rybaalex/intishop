@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import Styles from "./SnackBar.module.scss";
 import { Button } from "components/button";
@@ -9,29 +9,29 @@ export interface SnackBarI {
   btnFunc?: () => void;
   btnTitle?: string;
   hideFunc?: () => void;
-  iconSrc?: string;
-  customeChildren?: string | React.ReactElement | React.ReactNode;
+  Icon?: React.SFC<React.SVGProps<SVGSVGElement>>;
+  customChildren?: string | React.ReactElement | React.ReactNode;
   width?: number;
   position?: "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 }
 
-const SnackBar: React.FC<SnackBarI> = ({
-  show,
-  message,
-  btnFunc,
-  btnTitle,
-  hideFunc,
-  iconSrc,
-  customeChildren,
-  width = 400,
-  position = "bottomRight",
-}) => {
+const SnackBar: FC<SnackBarI> = ({
+                                   show,
+                                   message,
+                                   btnFunc,
+                                   btnTitle,
+                                   hideFunc,
+                                   Icon,
+                                   customChildren,
+                                   width = 400,
+                                   position = "bottomRight"
+                                 }) => {
   const isHideClass = !show ? Styles.hide : "";
   const positionStyle = {
     bottomRight: { bottom: 19, right: 16 },
     bottomLeft: { bottom: 19, left: 16 },
     topRight: { top: 19, right: 16 },
-    topLeft: { top: 19, left: 16 },
+    topLeft: { top: 19, left: 16 }
   };
 
   return (
@@ -41,14 +41,12 @@ const SnackBar: React.FC<SnackBarI> = ({
       onClick={hideFunc}
       style={{ width, ...positionStyle[position] }}
     >
-      {customeChildren ? (
-        customeChildren
+      {customChildren ? (
+        customChildren
       ) : (
         <>
           <div className={Styles.message_container}>
-            {iconSrc && (
-              <img src={iconSrc} alt="message_icon" className={Styles.icon} />
-            )}
+            <Icon />
             <span className={Styles.message}>{message}</span>
           </div>
 

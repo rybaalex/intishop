@@ -6,6 +6,9 @@ const tokenService = require("./token.service");
 const UserDto = require("../../../dtos/user.dto");
 const ApiError = require("../../../exceptions/api-error");
 const CodeErrors = require("../../../exceptions/code_errors");
+const tagModel = require("../../../models/tags.model");
+const apiError = require("../../../exceptions/api-error");
+const codeErrors = require("../../../exceptions/code_errors");
 
 
 class UserService {
@@ -97,6 +100,17 @@ class UserService {
 
   async getUsers() {
     return UserModel.find();
+  }
+  async deleteUserOne(_id) {
+    const findUser = await UserModel.findOne({ _id });
+    if (!findUser) {
+      throw apiError.BadRequest(codeErrors.noDataFound.title, codeErrors.noDataFound.code);
+    }
+    return UserModel.deleteOne({ _id });
+  }
+
+  async deleteUserMany(ids) {
+    return UserModel.deleteMany({ _id: ids });
   }
 }
 

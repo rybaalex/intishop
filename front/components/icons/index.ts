@@ -13,5 +13,6 @@ export { EmailIcon } from "./includes/EmailIcon";
 export { PassIcon } from "./includes/PassIcon";
 export { CartIcon } from "./includes/CartIcon";
 export { SuccessIcon } from "./includes/SuccessIcon";
+export { SuccessPageIcon } from "./includes/SuccessPageIcon";
 
 

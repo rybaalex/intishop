@@ -1,11 +1,11 @@
-@import '../../styles/variables';
-@import '../../styles/mixin';
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
 
 .container {
   padding: 16px 16px 16px 20px;
-  background: rgba(0, 0, 0, 0.48);
+  background-color: color(color_background_snack_bar);
+  color: color(color_text_secondary);
   position: fixed;
-  border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,31 +14,34 @@
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
   opacity: 1;
+  border-left: 5px solid color(color_border_left_snack_bar);
+
+  .message_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      path {
+        fill: color(color_background_secondary);
+      }
+    }
+
+    .message {
+      letter-spacing: 0.4px;
+      text-align: justify;
+    }
+  }
+
+  &.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
-.message_container {
-  display: flex;
-  align-items: center;
-}
 
-.message {
-  color: $TextDayColorBG;
-  @extend %AllBodyText;
-  letter-spacing: 0.4px;
-  text-align: justify;
-}
 
-.btn {
-  letter-spacing: 0.4px;
-  min-width: 105px;
-  margin-left: 8px;
-}
 
-.icon {
-  margin-right: 8px;
-}
 
-.hide {
-  z-index: -10;
-  opacity: 0;
-}
+
+

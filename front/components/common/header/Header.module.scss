@@ -4,11 +4,64 @@
 .container_header {
   display: flex;
   position: relative;
-  margin-top: 20px;
 }
 
 .section_header {
-  border-top: 3px solid color(color_border_secondary);
+  border-top: 3px solid color(color_border_primary);
+
+
+  .top_nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 12px 0;
+    border-bottom: 1px solid color(color_border_primary);
+
+    .block_contacts {
+      color: color(color_text_primary);
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: color(color_text_primary);
+        text-decoration: none;
+        transition: all 0.3s;
+
+        &:hover {
+          transition: all 0.1s;
+          color: color(color_text_primary_active);
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      gap: 20px;
+
+      a {
+        color: color(color_text_primary);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 14px;
+
+        &:first-letter {
+          text-transform: uppercase;
+        }
+
+        &:hover {
+          transition: all 0.1s;
+          color: color(color_text_primary_active);
+        }
+      }
+    }
+  }
+}
+
+.section_header_context {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background-color: color(color_background_secondary);
 
   .header {
     display: grid;
@@ -111,51 +164,6 @@
       }
     }
 
-  }
-
-  .top_nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 0 12px 0;
-    border-bottom: 1px solid color(color_border_primary);
-
-    .block_contacts {
-      color: color(color_text_primary);
-      display: flex;
-      gap: 15px;
-
-      a {
-        color: color(color_text_primary);
-        text-decoration: none;
-        transition: all 0.3s;
-
-        &:hover {
-          transition: all 0.1s;
-          color: color(color_text_primary_active);
-        }
-      }
-    }
-
-    ul {
-      display: flex;
-      gap: 20px;
-
-      a {
-        color: color(color_text_primary);
-        text-decoration: none;
-        transition: all 0.3s;
-        font-size: 14px;
-
-        &:first-letter {
-          text-transform: uppercase;
-        }
-
-        &:hover {
-          transition: all 0.1s;
-          color: color(color_text_primary_active);
-        }
-      }
-    }
   }
 
   .active {

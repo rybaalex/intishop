@@ -7,6 +7,6 @@ interface IReqLogin {
 }
 
 const Login = (value: IReqLogin) => {
-  return clientReq.post("/signin", value);
+  return clientReq.post("/admin/signin", value);
 };
 export { Login };

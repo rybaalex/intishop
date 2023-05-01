@@ -25,7 +25,7 @@ class UserController {
       const { email, password, forgot } = req.body;
       const maxAge = forgot ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
       const userData = await userService.signIn(email, password);
-      res.cookie("refreshToken", userData.refreshToken, { maxAge: maxAge, httpOnly: true });
+      res.cookie("refresh_token", userData.refreshToken, { maxAge: maxAge, httpOnly: true });
       return res.json(userData);
     } catch (e) {
       next(e);

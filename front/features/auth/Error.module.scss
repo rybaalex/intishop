@@ -28,13 +28,41 @@
 
     }
     .success__container {
-      width: 128px;
-      height: 128px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background-color: color(color_background_success);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       margin-bottom: 50px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -25px;
+        top: -25px;
+        width: 210px;
+        height: 210px;
+        background: color(color_background_success);
+        z-index: -1;
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: -50px;
+        top: -50px;
+        width: 260px;
+        height: 260px;
+        background: color(color_background_success);
+        z-index: -1;
+        border-radius: 50%;
+        opacity: 0.2;
+      }
 
       @include phoneScreen {
         width: 80px;
@@ -42,8 +70,8 @@
       }
 
       svg {
-        width: 128px;
-        height: 128px;
+        width: 80px;
+        height: 80px;
       }
     }
   }

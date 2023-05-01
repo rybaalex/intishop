@@ -16,5 +16,18 @@ router.get("/users",
 
 router.post("/getMe",
   userController.getMe);
+
+router.post("/signin",
+  userController.signIn);
+
+router.delete("/users/:id",
+  rolesMiddleware(["ADMIN"]),
+  userController.deleteUserOne);
+
+router.delete("/users",
+  rolesMiddleware(["ADMIN"]),
+  userController.deleteUserMany);
+
+
 module.exports = router;
 

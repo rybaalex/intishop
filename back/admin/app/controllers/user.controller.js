@@ -2,6 +2,9 @@ const userService = require("../services/user.service");
 const ApiError = require("../../../exceptions/api-error");
 const UserDto = require("../../../dtos/user.dto");
 const responseDto = require("../../../dtos/response.dto");
+const apiError = require("../../../exceptions/api-error");
+const codeErrors = require("../../../exceptions/code_errors");
+const tagService = require("../services/tag.service");
 
 class UserController {
   async signUp(req, res, next) {
@@ -102,6 +105,32 @@ class UserController {
       return res.json(responseDto);
     } catch (err) {
       next(err);
+    }
+  }
+  async deleteUserOne(req, res, next) {
+    try {
+      const { id } = req.params;
+      if (!id) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
+      responseDto.response = await userService.deleteUserOne(id);
+      return res.json(responseDto);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async deleteUserMany(req, res, next) {
+    try {
+      const ids = JSON.parse(req.query.filter);
+      if (!ids.id) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
+      await userService.deleteUserMany(ids.id);
+      responseDto.response = [{ id: "", value: "" }];
+      return res.json(responseDto);
+    } catch (e) {
+      next(e);
     }
   }
 }
