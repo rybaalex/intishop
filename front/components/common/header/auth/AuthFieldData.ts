@@ -28,6 +28,30 @@ const SingInData: ISignInData[] = [{
 
   }
 ];
+const ForgotData: ISignInData[] = [{
+  name: "email",
+  type: "text",
+  title: "Е-майл",
+  filter: /\/./g,
+  icon: EmailIcon,
+  size: 0
+}];
+const ResetData: ISignInData[] = [{
+  name: "password",
+  type: "password",
+  title: "Пароль",
+  filter: /\/./g,
+  icon: PassIcon,
+  size: 0
+}, {
+  name: "confirmPassword",
+  type: "password",
+  title: "Повторение пароля",
+  filter: /\/./g,
+  icon: PassIcon,
+  size: 0
+}];
+
 const SingUpData: ISignInData[] = [
   {
     name: "nameSingUp",
@@ -62,5 +86,5 @@ const SingUpData: ISignInData[] = [
     icon: PassIcon
   }
 ];
-export { SingInData, SingUpData };
+export { SingInData, SingUpData, ForgotData, ResetData };
 export type { ISignInData };

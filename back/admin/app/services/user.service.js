@@ -6,32 +6,11 @@ const tokenService = require("./token.service");
 const UserDto = require("../../../dtos/user.dto");
 const ApiError = require("../../../exceptions/api-error");
 const CodeErrors = require("../../../exceptions/code_errors");
-const tagModel = require("../../../models/tags.model");
 const apiError = require("../../../exceptions/api-error");
 const codeErrors = require("../../../exceptions/code_errors");
 
 
 class UserService {
-  async signUp(email, password, name) {
-    const candidate = await UserModel.findOne({ email });
-    if (candidate) {
-      throw ApiError.BadRequest(`Пользователь ${email} уже существует`);
-    }
-    const hashPassword = await bcrypt.hash(password, 7);
-    const activationLink = uuid.v4();
-    //  const userRole = await Role.findOne({value:'USER'})
-    const user = await UserModel.create({ email, password: hashPassword, activationLink, name, roles: ["USER"] });
-    const userDto = new UserDto(user);
-    const tokens = tokenService.generateToken({ ...userDto });
-    await tokenService.saveToken(userDto.id, tokens.refreshToken);
-    //const mail = await mailService.sendActivationMail(email, `${process.env.APP_URL}/api/v1/activate/${activationLink}`);
-    //console.log("mail", mail);
-    return {
-      ...tokens,
-      user: userDto
-    };
-  }
-
   async activate(activationLink) {
     const user = await UserModel.findOne({ activationLink });
     if (!user) {

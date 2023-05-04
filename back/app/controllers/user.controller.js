@@ -3,7 +3,7 @@ const apiError = require("../../exceptions/api-error");
 const UserDto = require("../../dtos/user.dto");
 const responseDto = require("../../dtos/response.dto");
 const codeErrors = require("../../exceptions/code_errors");
-const { hasError } = require("../../dtos/response.dto");
+const ObjectID = require("mongodb").ObjectID;
 
 class UserController {
   async signUp(req, res, next) {
@@ -107,6 +107,50 @@ class UserController {
       next(err);
     }
   }
+
+  async getUsersOne(req, res, next) {
+    try {
+      const { id } = req.params;
+      if (!id || !ObjectID.isValid(id)) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
+
+      const user = await userService.getUserOne(id);
+      responseDto.response = user ? new UserDto(user) : null;
+      return res.json(responseDto);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async forgot(req, res, next) {
+    try {
+      const { email } = req.params;
+      if (!email) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
+      const resultUser = await userService.forgot(email);
+      responseDto.response = ["OK"];
+      return res.json(responseDto);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async reset(req, res, next) {
+    try {
+      const { id, password } = req.body;
+      if (!id || !password) {
+        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+      }
+      const resultUser = await userService.editPassword(id, password);
+      responseDto.response = ["OK"];
+      return res.json(responseDto);
+    } catch (err) {
+      next(err);
+    }
+  }
+
 }
 
 module.exports = new UserController();

@@ -6,6 +6,12 @@ const tokenService = require("./token.service");
 const UserDto = require("../../dtos/user.dto");
 const apiError = require("../../exceptions/api-error");
 const codeErrors = require("../../exceptions/code_errors");
+const categoryModel = require("../../models/category.model");
+const ApiError = require("../../exceptions/api-error");
+const CodeErrors = require("../../exceptions/code_errors");
+const fs = require("fs");
+const responseDto = require("../../dtos/response.dto");
+const BrandModel = require("../../models/brand.model");
 
 class UserService {
   async signUp(email, password, name) {
@@ -50,7 +56,7 @@ class UserService {
   async signIn(email, password) {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      throw apiError.BadRequest("Пользователь не найден, зарегистрируйтесь", 444);
+      throw apiError.BadRequest(codeErrors.userNotFound.title, codeErrors.userNotFound.code);
     }
 
     const isPassEquals = await bcrypt.compare(password, user.password);
@@ -96,6 +102,36 @@ class UserService {
   async getUsers() {
     return UserModel.find();
   }
+
+  async forgot(email) {
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      throw apiError.BadRequest(codeErrors.userNotFound.title, codeErrors.userNotFound.code);
+    }
+    const userDto = new UserDto(user);
+    await mailService.sendForgotMail(email, `${process.env.APP_URL}:${process.env.CLIENT_PORT}/auth/reset_password/${user._id}/${user.email}`).catch(err => console.log("222", err));
+    return { userDto };
+  }
+
+  async getUserOne(id) {
+    return UserModel.findOne({ _id: id });
+  }
+
+  async editPassword(id, password) {
+    const findUser = await UserModel.findOne({ _id: id });
+    if (!findUser) {
+      throw apiError.BadRequest(codeErrors.noDataFound.title, codeErrors.noDataFound.code);
+    }
+    const hashPassword = await bcrypt.hash(password, 7);
+
+    return UserModel.updateOne({ _id: id }, {
+      $set: {
+        password: hashPassword
+      }
+    });
+  }
+
 }
 
 module.exports = new UserService();

@@ -3,19 +3,30 @@
 
 .container {
   padding: 16px 16px 16px 20px;
-  background-color: color(color_background_snack_bar);
   color: color(color_text_secondary);
   position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1000;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
   opacity: 1;
-  border-left: 5px solid color(color_border_left_snack_bar);
 
+  &.success {
+    background-color: color(color_background_snack_bar_success);
+    border-left: 5px solid color(color_border_left_snack_bar_success);
+  }
+
+  &.error {
+    background-color: color(color_background_snack_bar_error);
+    border-left: 5px solid color(color_border_left_snack_bar_error);
+  }
+  &.warning {
+    background-color: color(color_background_snack_bar_warning);
+    border-left: 5px solid color(color_border_left_snack_bar_warning);
+  }
   .message_container {
     display: flex;
     align-items: center;

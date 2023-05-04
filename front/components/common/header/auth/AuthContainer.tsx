@@ -30,7 +30,7 @@ const AuthContainer: FC = () => {
           svgIcon: SuccessIcon
         }
       );
-    }, 3000);
+    }, 5000);
 
   }, [snackBar.isShow]);
   const handleSingUpSuccess = () => {

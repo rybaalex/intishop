@@ -72,6 +72,15 @@ const dataProvider = {
       data: json,
       total: parseInt(headers.get("content-range").split("/").pop(), 10)
     }));
+  },
+  update: async (resource, params) => {
+    return httpClient(`${apiUrl}/${resource}`, {
+      method: "PUT",
+      body: JSON.stringify(params.data)
+    }).then(({ json }) => {
+      return { data: json.response };
+    });
   }
+
 };
 export { dataProvider };
