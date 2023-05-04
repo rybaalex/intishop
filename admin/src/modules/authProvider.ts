@@ -76,6 +76,5 @@ const authProvider: AuthProvider = {
       return inMemoryJWTManager.getToken() ? Promise.resolve() : Promise.reject();
     });
   }
-
 };
 export { authProvider };

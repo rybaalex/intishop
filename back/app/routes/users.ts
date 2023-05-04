@@ -17,10 +17,20 @@ router.get("/users",
 router.get("/activate/:link",
   userController.activate);
 
+router.get("/users/:id",
+  userController.getUsersOne);
+
 router.post("/signup",
   userController.signUp);
 
 router.post("/signin",
   userController.signIn);
+
+router.get("/users/forgot/:email",
+  userController.forgot);
+
+router.put("/users/reset",
+  userController.reset);
+
 module.exports = router;
 

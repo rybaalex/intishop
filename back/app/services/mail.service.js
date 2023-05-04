@@ -27,6 +27,20 @@ class MailService {
       </div>`
     });
   }
+
+  async sendForgotMail(to, link) {
+    const info = await this.transporter.sendMail({
+      from: process.env.SMTP_USER + "@yandex.ru Секретарь",
+      to,
+      subject: process.env.SHOP_NAME + ": ссылка на востановление пароля ",
+      text: "",
+      html: `<div>
+        <h1>Для востановления пароля перейдите по ссылке</h1>
+        <a href="${link}">${link}</a>
+      </div>`
+    });
+  }
+
 }
 
 module.exports = new MailService();
