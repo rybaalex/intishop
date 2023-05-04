@@ -1,0 +1,1 @@
+export { AdvantagesContainer as Advantages } from "./AdvantagesContainer";
