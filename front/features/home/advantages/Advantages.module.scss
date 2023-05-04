@@ -1,0 +1,61 @@
+@import 'styles/mixins.scss';
+@import 'styles/variables.scss';
+
+.advantages_container {
+  margin-top: 42px;
+  margin-bottom: 91px;
+  padding: 0 125px 0 139px;
+  display: grid;
+  grid-template-columns: 394px 340px 386px;
+  justify-content: center;
+
+  svg {
+    width: 60px;
+    height: 50px;
+
+    path {
+      fill: color(color_text_primary)
+    }
+  }
+
+  .text_item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h3 {
+      color: color(color_text_primary);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    span {
+      color: color(color_text_primary);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+
+  .truck {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+  }
+
+  .best_price {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .available {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}

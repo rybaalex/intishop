@@ -14,5 +14,8 @@ export { PassIcon } from "./includes/PassIcon";
 export { CartIcon } from "./includes/CartIcon";
 export { SuccessIcon } from "./includes/SuccessIcon";
 export { SuccessPageIcon } from "./includes/SuccessPageIcon";
+export { TrackIcon } from "./includes/TrackIcon";
+export { PriceIcon } from "./includes/PriceIcon";
+export { AvailableIcon } from "./includes/AvailableIcon";
 
 
