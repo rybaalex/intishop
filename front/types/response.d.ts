@@ -13,4 +13,4 @@ interface IPage {
 }
 
 
-export { IResponse, IPage, ISSRData };
+export { IResponse, IPage };

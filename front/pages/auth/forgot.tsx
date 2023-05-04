@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 import { Layout } from "components/common";
 import { fetchStaticPage } from "components/common/header/static_page/StaticPageSlice";
 import { getList } from "service/server/dataProviderServer";
-import { ISSRData } from "types/response";
 import { ForgotContainer } from "features/auth/forgot/ForgotContainer";
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
@@ -24,7 +23,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   }
 );
 
-const ForgotSSR = (props: ISSRData) => <ForgotContainer {...props} />;
+const ForgotSSR = () => <ForgotContainer />;
 
 ForgotSSR.getLayout = (page: ReactNode) => {
   return <Layout>{page}</Layout>;

@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 import { Layout } from "components/common";
 import { fetchStaticPage } from "components/common/header/static_page/StaticPageSlice";
 import { getList } from "service/server/dataProviderServer";
-import { ISSRData } from "types/response";
 import { ResetContainer } from "features/auth/forgot/ResetContainer";
 import { dataProvider } from "service/dataProvider";
 
@@ -46,7 +45,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   }
 );
 
-const ResetSSR = (props: ISSRData) => <ResetContainer {...props} />;
+const ResetSSR = () => <ResetContainer />;
 
 ResetSSR.getLayout = (page: ReactNode) => {
   return <Layout>{page}</Layout>;

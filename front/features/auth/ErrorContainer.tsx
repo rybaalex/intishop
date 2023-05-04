@@ -2,8 +2,9 @@ import { useRouter } from "next/dist/client/router";
 import Styles from "./Error.module.scss";
 import { SuccessIcon } from "components/icons";
 import { Container } from "components/common";
+import { FC } from "react";
 
-const ErrorContainer = () => {
+const ErrorContainer:FC = () => {
   const router = useRouter();
   return (<Container className="wrapper no_margin width100" el={"div"}>
     <div className={Styles.success__block}>
