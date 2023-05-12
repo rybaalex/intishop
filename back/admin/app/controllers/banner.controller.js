@@ -5,7 +5,6 @@ const bannersDto = require("../../../dtos/banners.dto");
 const fs = require("fs");
 const path = require("path");
 const codeErrors = require("../../../exceptions/code_errors");
-
 const DIR = path.join(__dirname + "../../../../" + process.env.UPLOADS + "/banners/");
 
 class BannerController {
@@ -59,8 +58,7 @@ class BannerController {
 
       if (body?.image?.img) {
         const FILE = new Date().getTime().toString() + body.image.title;
-        fs.writeFile(DIR + FILE, req.body.image.img, "base64", () => {
-        });
+        fs.writeFile(DIR + FILE, req.body.image.img, "base64", () => {});
 
         body.image.desktop = FILE;
       }

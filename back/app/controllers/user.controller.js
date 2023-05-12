@@ -57,67 +57,11 @@ class UserController {
     }
   }
 
-  async isActivated(req, res, next) {
-    try {
-      const { _id, isActivated } = req.body;
-      const user = await userService.isActivated(_id, isActivated);
-      responseDto.response = new UserDto(user);
-      return res.json(responseDto);
-
-    } catch (e) {
-      next(e);
-    }
-  }
-
   async refresh_token(req, res, next) {
     try {
-      const { refreshToken } = req.cookies;
-      const userData = await userService.refresh(refreshToken);
-      res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+      const { refresh_token } = req.cookies;
+      const userData = await userService.refresh(refresh_token);
       return res.json(userData);
-    } catch (e) {
-      next(e);
-    }
-  }
-
-  async getMe(req, res, next) {
-    try {
-      const users = await userService.getMe(req.headers.authorization);
-      const userDto = new UserDto(users);
-      return res.json(userDto);
-    } catch (e) {
-      next(e);
-    }
-  }
-
-  async getUsers(req, res, next) {
-    try {
-      const users = await userService.getUsers();
-      responseDto.response = users.map(model => {
-        return {
-          email: model.email,
-          id: model._id,
-          isActivated: model.isActivated,
-          name: model.name,
-          roles: model.roles
-        };
-      });
-      return res.json(responseDto);
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  async getUsersOne(req, res, next) {
-    try {
-      const { id } = req.params;
-      if (!id || !ObjectID.isValid(id)) {
-        return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
-      }
-
-      const user = await userService.getUserOne(id);
-      responseDto.response = user ? new UserDto(user) : null;
-      return res.json(responseDto);
     } catch (e) {
       next(e);
     }
@@ -149,6 +93,15 @@ class UserController {
     } catch (err) {
       next(err);
     }
+  }
+
+  async getMe(req, res, next) {
+    const { authorization } = req.headers;
+    if (!authorization) {
+      return next(apiError.BadRequest(codeErrors.notParams.title, codeErrors.notParams.code));
+    }
+    responseDto.response = await userService.getMe(authorization);
+    return res.json(responseDto);
   }
 
 }
