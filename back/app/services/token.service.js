@@ -12,6 +12,14 @@ class TokenService {
     };
   }
 
+  generateAccessToken(payload) {
+    const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN, { expiresIn: process.env.ACCESS_TOKKEN_LIFE + "m" });
+
+    return {
+      accessToken
+    };
+  }
+
   validateAccessToken(token) {
     try {
       return jwt.verify(token, process.env.JWT_ACCESS_TOKEN);

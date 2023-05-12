@@ -6,9 +6,6 @@ const tokenService = require("./token.service");
 const UserDto = require("../../dtos/user.dto");
 const apiError = require("../../exceptions/api-error");
 const codeErrors = require("../../exceptions/code_errors");
-const categoryModel = require("../../models/category.model");
-const ApiError = require("../../exceptions/api-error");
-const CodeErrors = require("../../exceptions/code_errors");
 const fs = require("fs");
 const responseDto = require("../../dtos/response.dto");
 const BrandModel = require("../../models/brand.model");
@@ -42,27 +39,16 @@ class UserService {
     await user.save();
   }
 
-  //активация для админки
-  async isActivated(id, isActivated) {
-    const user = await UserModel.findOne({ _id: id });
-    if (!user) {
-      throw apiError.BadRequest(codeErrors.noDataFound.title, codeErrors.noDataFound.code);
-    }
-    user.isActivated = isActivated;
-    await user.save();
-    return user;
-  }
-
   async signIn(email, password) {
     const user = await UserModel.findOne({ email });
     if (!user) {
-      throw apiError.BadRequest(codeErrors.userNotFound.title, codeErrors.userNotFound.code);
+      throw apiError.BadRequest("Не верный логин или пароль", 401);
     }
 
     const isPassEquals = await bcrypt.compare(password, user.password);
 
     if (!isPassEquals) {
-      throw apiError.BadRequest("Вы ввели не верный пароль", 401);
+      throw apiError.BadRequest("Не верный логин или пароль", 401);
     }
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
@@ -73,7 +59,6 @@ class UserService {
   async logout(refreshToken) {
     return await tokenService.removeToken(refreshToken);
   }
-
 
   async refresh(refreshToken) {
     if (!refreshToken) {
@@ -88,19 +73,9 @@ class UserService {
 
     const user = await UserModel.findById(userData.id);
     const userDto = new UserDto(user);
-    const tokens = tokenService.generateToken({ ...userDto });
+    const tokens = tokenService.generateAccessToken({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
     return { ...tokens, user: userDto, accessTokenLife: process.env.ACCESS_TOKKEN_LIFE };
-  }
-
-  async getMe(accessToken) {
-    const accessTokenSplit = accessToken.split(" ")[1];
-    const userData = tokenService.validateAccessToken(accessTokenSplit);
-    return UserModel.findOne({ _id: userData.id });
-  }
-
-  async getUsers() {
-    return UserModel.find();
   }
 
   async forgot(email) {
@@ -114,9 +89,6 @@ class UserService {
     return { userDto };
   }
 
-  async getUserOne(id) {
-    return UserModel.findOne({ _id: id });
-  }
 
   async editPassword(id, password) {
     const findUser = await UserModel.findOne({ _id: id });
@@ -130,6 +102,10 @@ class UserService {
         password: hashPassword
       }
     });
+  }
+
+  async getMe(token) {
+    return tokenService.validateAccessToken(token.split(" ")[1]);
   }
 
 }

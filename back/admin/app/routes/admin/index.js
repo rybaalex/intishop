@@ -9,6 +9,8 @@ const structures = require("./structures.ts");
 const brands = require("./brands.ts");
 const categories = require("./categories.ts");
 const banners = require("./banners.ts");
+const stockType = require("./stock_types.ts");
+const stock = require("./stock.ts");
 
 //users
 
@@ -23,5 +25,7 @@ rootRouter.use("/", tags);
 rootRouter.use("/", labels);
 rootRouter.use("/", categories);
 rootRouter.use("/", banners);
+rootRouter.use("/", stockType);
+rootRouter.use("/", stock);
 
 module.exports = rootRouter;
