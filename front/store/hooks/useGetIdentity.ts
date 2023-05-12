@@ -7,10 +7,10 @@ const useGetIdentity = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>(undefined);
 
-  const getIdentity = (resource: string, params?: IParams) => {
+  const getIdentity = (resource: string) => {
 
     setIsLoading(true);
-    return dataProvider.getIdentity(resource, params)
+    return dataProvider.getIdentity(resource)
       .then(data => {
         setIsLoading(false);
         return data;
