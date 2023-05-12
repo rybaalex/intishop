@@ -106,7 +106,7 @@
     justify-content: center;
     transition: all 0.3s;
     color: color(color_text_secondary);
-
+    white-space: nowrap;
     svg {
       path {
         transition: all 0.3s;

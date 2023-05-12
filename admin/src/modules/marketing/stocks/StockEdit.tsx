@@ -8,7 +8,7 @@ import {
 } from "react-admin";
 import { Box } from "@mui/material";
 
-const StockTypeEdit = () => {
+const StockEdit = () => {
   const record = useRecordContext();
   const resource = useResourceContext();
   return (
@@ -37,4 +37,4 @@ const StockTypeEdit = () => {
   );
 };
 
-export { StockTypeEdit };
+export { StockEdit };

@@ -1,14 +1,16 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import staticPageSlice from "components/common/header/static_page/StaticPageSlice";
+import authSlice from "components/common/header/auth/AuthSlice";
 
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [staticPageSlice.name]: staticPageSlice.reducer,
+      [authSlice.name]: authSlice.reducer
     },
-    devTools: true,
+    devTools: true
   });
 
 // eslint-disable-next-line no-undef

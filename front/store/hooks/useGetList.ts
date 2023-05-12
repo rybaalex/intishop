@@ -3,12 +3,11 @@ import { dataProvider } from "service/dataProvider";
 import { IParams } from "types/Request";
 
 
-
 const useGetList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>(undefined);
 
-  const getList = (resource: string, params?: IParams) => {
+  const getList = (resource: string, params?: IParams, auth = false) => {
 
     const { pagination, sort, filter }: IParams = params !== undefined ? {
       pagination: params.pagination,
@@ -21,12 +20,13 @@ const useGetList = () => {
     };
 
     setIsLoading(true);
-    return dataProvider.getList(resource, { pagination, sort, filter }).then(data => {
-      setIsLoading(false);
-      return data;
-    }).catch(e => {
-      setIsError(e);
-    });
+    return dataProvider.getList(resource, { pagination, sort, filter, auth })
+      .then(data => {
+        setIsLoading(false);
+        return data;
+      }).catch(e => {
+        setIsError(e);
+      });
   };
 
   return { isLoading, getList, isError };

@@ -10,15 +10,15 @@
 
   .forgot_form {
     width: 500px;
-
+    h1 {
+      font-size: 20px;
+      color: color(color_text_primary);
+    }
     form {
       display: flex;
       gap: 20px;
 
-      h1 {
-        font-size: 20px;
-        color: color(color_text_primary);
-      }
+
 
       .button_size {
         height: 45px;

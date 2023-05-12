@@ -38,6 +38,7 @@ const dataProvider = {
       filter: JSON.stringify(params.filter)
     };
     const url = `${apiUrl}/${resource}?${queryString.stringify(query)}`;
+
     return await httpClient(url).then(({ json }) => {
       return {
         data: json ? json.response.id === undefined ? json.response : [json.response] : [],
@@ -49,8 +50,12 @@ const dataProvider = {
     const query = {
       filter: JSON.stringify({ ids: params.ids })
     };
+
     const url = `${apiUrl}/${resource}?${queryString.stringify(query)}`;
-    return httpClient(url).then(({ json }) => ({ data: json }));
+    return httpClient(url).then(({ json }) => {
+        return { data: json.response };
+      }
+    );
   },
   getManyReference: (resource, params) => {
     const { page, perPage } = params.pagination;
@@ -63,6 +68,7 @@ const dataProvider = {
         [params.target]: params.id
       })
     };
+
     const url = `${apiUrl}/${resource}?${query}`;
 
     return httpClient(url).then(({ headers, json }) => ({

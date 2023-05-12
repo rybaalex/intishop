@@ -1,20 +1,26 @@
 import {
   Datagrid, List,
+  ReferenceField,
   TextField
 } from "react-admin";
 
 
 import { ListActions } from "../../../components/action/ListAction";
-import { StockTypeEdit } from "./StockTypeEdit";
+import { StockEdit } from "./StockEdit";
+import { CustomImage } from "../../../components/fields/CustomImage";
+import { PublishedBooleanField } from "../../../components/fields/PublishedBooleanField";
 
-const StockTypeList = () => {
-  return (<List title={"Типы акций"} sort={{ field: "title", order: "ASC" }} actions={<ListActions />}>
-    <Datagrid expand={<StockTypeEdit />} expandSingle rowClick="edit">
-      <TextField source="title" label={"Наименование"} />
-      <TextField source="background" label={"Цвет фона"} />
-      <TextField source="color" label={"Цвет текста"} />
-      <TextField source="code" label={"Код"} sortable={false} />
+const StockList = () => {
+  return (<List title={"Акции"} sort={{ field: "title", order: "ASC" }} actions={<ListActions />}>
+    <Datagrid expand={<StockEdit />} expandSingle rowClick="edit">
+      <CustomImage source="image" label={"Фото"} sortable={false} uploads_name={"stocks"} />
+      <TextField source="type.title" label={"Название"}/>
+      <TextField source="description" label={"Описание"} />
+      <TextField source="url" label={"Ссылка"} sortable={false} />
+      <TextField source="sort" label={"Сортировка"} />
+      <PublishedBooleanField source={"published"} resource={"stocks"} label={"Показан"} textAlign={"center"}
+                             sortable={false} />
     </Datagrid>
   </List>);
 };
-export { StockTypeList };
+export { StockList };

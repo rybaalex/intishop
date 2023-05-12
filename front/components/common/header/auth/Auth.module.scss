@@ -55,7 +55,7 @@
       border: 1px solid color(color_border_primary);
       color: color(color_text_primary_active);
       background: none;
-     // transform: scale(0.95);
+      // transform: scale(0.95);
     }
 
     &:active {
@@ -70,7 +70,8 @@
       background-color: transparent;
       border-color: color(color_border_secondary);
       border-width: 1px;
-      &:hover{
+
+      &:hover {
         background-color: color(color_background_primary_hover);
       }
     }
@@ -112,6 +113,16 @@
       width: 100%;
       align-items: flex-start;
       margin: 15px 0;
+
+      a {
+        color: color(color_text_primary);
+        transition: all 0.3s;
+
+        &:hover {
+          color: color(color_text_primary_active);
+          transition: all 0.3s;
+        }
+      }
     }
 
     .all_error {
@@ -130,6 +141,7 @@
         font-size: 14px;
         padding: 0 10px;
         box-sizing: border-box;
+
         &:first-letter {
           text-transform: uppercase;
         }

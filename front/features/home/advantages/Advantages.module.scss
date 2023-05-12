@@ -44,6 +44,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
 
   }
 
@@ -51,11 +52,16 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    padding-left: 70px;
+    justify-content: center;
+
   }
 
   .available {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+
   }
 }

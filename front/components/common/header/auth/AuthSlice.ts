@@ -1,41 +1,27 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import type {AppState, AppThunk} from "store/store";
-import {HYDRATE} from "next-redux-wrapper";
-import {
-    INavResponse, INavSlice
-} from "types/nav";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { AppState } from "store/store";
+import { IAuth } from "types/Auth";
 
-const initialState: INavResponse = {
-    errorMessage: "",
-    hasError: false,
-    response: []
+const initialState: IAuth = {
+  identity: false,
+  data: {}
 };
 
-export const staticPageSlice = createSlice({
-    name: "staticPageState",
-    initialState: initialState,
-    reducers: {
-        setData: (_state, action: PayloadAction<INavSlice>) => {
-            return action.payload.staticPageState;
-        }
+export const authSlice = createSlice({
+  name: "authState",
+  initialState: initialState,
+  reducers: {
+    setAuthIdentity: (_state, action: PayloadAction<IAuth>) => {
+      return { ..._state, identity: action.payload.identity };
     },
-    extraReducers: {
-        [HYDRATE]: (state, action: PayloadAction<INavSlice>) => {
-            return {
-                ...state,
-                ...action.payload.staticPageState
-            };
-        }
+    setAuthData: (_state, action: PayloadAction<IAuth>) => {
+      return { ..._state, data: action.payload.data };
     }
+  }
 });
 
-export const fetchStaticPage =
-    (dispatchData: INavSlice): AppThunk =>
-        async (dispatch) => {
-            dispatch(staticPageSlice.actions.setData(dispatchData));
-        };
+export const { setAuthIdentity, setAuthData } = authSlice.actions;
 
+export const getAuth = (state: AppState) => state.authState;
 
-export const getStaticPage = (state: AppState) => state.staticPageState;
-
-export default staticPageSlice;
+export default authSlice;

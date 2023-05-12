@@ -1,9 +1,6 @@
 @import 'styles/mixins.scss';
 @import 'styles/variables.scss';
 
-.checkbox_container {
-  cursor: pointer;
-}
 .checkbox {
   &__label {
     -ms-user-select: none;
@@ -13,13 +10,14 @@
     --background: #fff;
     --border: #D1D6EE;
     --border-hover: #BBC1E1;
-    --border-active: #15BD6D;
+    --border-active: #A1B4CE;
     --tick: #fff;
     position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 12px;
     font-size: 14px;
+    cursor: pointer;
     color: #525252;
     line-height: 125%;
     @include phoneScreen {
