@@ -2,20 +2,24 @@ type IAuthProvider = {
   login: (
     params: any
   ) => Promise<{ redirectTo?: string | boolean } | void | any>;
-  logout: (params: any) => Promise<void | false | string>;
-  checkAuth: (params: any) => Promise<void>;
-  checkError: (error: any) => Promise<void>;
-  getIdentity?: () => Promise<UserIdentity>;
-  getPermissions: (params: any) => Promise<any>;
- // handleCallback?: () => Promise<AuthRedirectResult | void | any>;
+  logout?: (params: any) => Promise<void | false | string>;
+  checkAuth?: () => Promise<boolean>;
+  setIdentity?: () => boolean;
+  getPermissions?: (params: any) => Promise<any>;
   [key: string]: any;
 };
-interface UserIdentity {
-  id: Identifier;
-  fullName?: string;
-  avatar?: string;
-  [key: string]: any;
-}
-type Identifier = string | number;
 
-export {IAuthProvider}
+interface IAuthUser {
+  email?: string;
+  id?: string;
+  isActivated?: boolean;
+  name?: string;
+  roles?: string[];
+}
+
+interface IAuth {
+  identity?: boolean;
+  data?: IAuthUser;
+}
+
+export { IAuthProvider, IAuthUser, IAuth };

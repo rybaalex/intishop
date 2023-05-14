@@ -17,6 +17,8 @@ import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ViewCarouselOutlinedIcon from '@mui/icons-material/ViewCarouselOutlined';
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
 import {
   DashboardMenuItem,
   MenuItemLink,
@@ -147,6 +149,20 @@ const Menu = ({ dense = false }: MenuProps) => {
           state={{ _scrollToTop: true }}
           primaryText={"Баннеры"}
           leftIcon={<ViewCarouselOutlinedIcon />}
+          dense={dense}
+        />
+        <MenuItemLink
+          to="/stocks"
+          state={{ _scrollToTop: true }}
+          primaryText={"Акции"}
+          leftIcon={<LoyaltyOutlinedIcon />}
+          dense={dense}
+        />
+        <MenuItemLink
+          to="/stock_types"
+          state={{ _scrollToTop: true }}
+          primaryText={"Типы акций"}
+          leftIcon={<FormatListBulletedOutlinedIcon />}
           dense={dense}
         />
       </SubMenu>

@@ -1,5 +1,5 @@
 import Styles from "components/common/header/Header.module.scss";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useToggle } from "store/hooks/useToggle";
 import { Button } from "components/button";
 import { Catalog } from "components/common/header/catalog";
@@ -9,9 +9,28 @@ import { AuthContainer } from "components/common/header/auth/AuthContainer";
 import { HeartIcon } from "components/icons";
 import { MiniCart } from "./minicart";
 import { Container } from "components/common";
+import { useCheckAuth } from "store/hooks/useCheckAuth";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getAuth, setAuthData, setAuthIdentity } from "components/common/header/auth/AuthSlice";
+import { useGetIdentity } from "store/hooks/useGetIdentity";
+import { IAuthUser } from "types/Auth";
 
 const HeaderContext = () => {
   const [stateMenu, toggleMenu] = useToggle(false);
+  const { getCheckAuth } = useCheckAuth();
+  const { getIdentity } = useGetIdentity();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector(getAuth);
+
+  useEffect(() => {
+    getCheckAuth().then((data) => {
+      dispatch(setAuthIdentity({ identity: data }));
+      data && getIdentity("get_me").then((auth_data: { data: IAuthUser }) => {
+        dispatch(setAuthData({ data: auth_data.data }));
+      });
+    });
+  }, []);
+
 
   const HamburgerMenu: FC = () => {
     return <div className={Styles.hamburgerMenu}>
@@ -21,7 +40,7 @@ const HeaderContext = () => {
     </div>;
   };
   return (<Container className={Styles.section_header_context}>
-      <Container className="wrapper" el={"div"}>
+      <Container className="wrapper width100" el={"div"}>
         <div className={Styles.container_header}>
           <div className={Styles.header__menu}
                onMouseEnter={() => toggleMenu()}
@@ -43,7 +62,7 @@ const HeaderContext = () => {
             </div>
             <SearchContainer />
             <div className={Styles.header__contacts}>
-              <AuthContainer />
+              {auth.identity ? <AuthContainer /> : <AuthContainer />}
               <div className={Styles.block_favourites}>
                 <HeartIcon />
                 <div className={Styles.count}><span>9+</span></div>

@@ -1,26 +1,13 @@
 import { useState } from "react";
-import { dataProvider } from "service/dataProvider";
-import { IParams } from "types/Request";
+import { authProvider } from "service/authProvider";
 
-
-const useGetOne = () => {
+const useCheckAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>(undefined);
 
-  const getOne = (resource: string, params?: IParams, auth = false) => {
-
-    const { pagination, sort, filter }: IParams = params !== undefined ? {
-      pagination: params.pagination,
-      sort: params.sort,
-      filter: params.filter
-    } : {
-      pagination: { page: 0, perPage: 0 },
-      sort: { field: "sort", order: "DESC" },
-      filter: {}
-    };
-
+  const getCheckAuth = () => {
     setIsLoading(true);
-    return dataProvider.getOne(resource, { pagination, sort, filter, auth })
+    return authProvider.checkAuth()
       .then(data => {
         setIsLoading(false);
         return data;
@@ -29,7 +16,7 @@ const useGetOne = () => {
       });
   };
 
-  return { isLoading, getOne, isError };
+  return { isLoading, getCheckAuth, isError };
 };
 
-export { useGetOne };
+export { useCheckAuth };

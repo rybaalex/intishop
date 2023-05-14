@@ -6,16 +6,19 @@ import { FormikValues, useFormik } from "formik";
 import { ValidationSchemaSingIn, ValidationSchemaSingUp } from "components/common/header/auth/ValidationSchema";
 import { Checkbox } from "components/checkbox";
 import { SingInData, SingUpData } from "components/common/header/auth/AuthFieldData";
-import { Login } from "service/auth/login";
 import { Register } from "service/auth/register";
+import { Link } from "components/link";
+import { authProvider } from "service/authProvider";
+import { IToken } from "types/Token";
 
 
 interface IAuthForm {
-  singInSuccess: () => void;
+  singInSuccess: (data: IToken) => void;
   singUpSuccess: () => void;
+  forgot: () => void;
 }
 
-const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
+const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess, forgot }) => {
   const refContainer = useRef<HTMLInputElement>();
   const [requestSingInError, setRequestSingInError] = useState<string>(undefined);
   const [requestSingUpError, setRequestSingUpError] = useState<string>(undefined);
@@ -27,12 +30,16 @@ const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
     },
     validationSchema: ValidationSchemaSingIn(),
     onSubmit: (value) => {
-      Login(value).then(() => {
-        setRequestSingInError(undefined);
-        singInSuccess();
+      authProvider.login(value).then(data => {
+        if (data.hasError) {
+          setRequestSingInError(data.errorMessage);
+        } else {
+          setRequestSingInError(undefined);
+          singInSuccess(data);
+        }
       })
         .catch(err => {
-          setRequestSingInError(err.response.data.message);
+          setRequestSingInError(err.message);
         });
     }
   });
@@ -67,6 +74,12 @@ const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
   const handleOnClickSignIn = () => {
     refContainer.current.classList.remove(`${Styles.right_panel_active}`);
   };
+  const handleOnClickForgot = () => {
+    setTimeout(() => {
+        forgot();
+      }, 100
+    );
+  };
   const handleFilterOnChangeSingIn = (
     formik: FormikValues,
     e: ChangeEvent<HTMLInputElement>,
@@ -84,7 +97,6 @@ const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
         : target
     );
   };
-
   return <div className={`${Styles.container}`} ref={refContainer}>
     <div className={`${Styles.form_container} ${Styles.sign_up_container}`}>
       <form onSubmit={formikSingUp.handleSubmit}>
@@ -139,9 +151,10 @@ const AuthForm: FC<IAuthForm> = ({ singInSuccess, singUpSuccess }) => {
           );
         })}
         <div className={Styles.forgot}>
-          <a>Забыли пароль?</a>
+          <Link url={"/auth/forgot"} onClick={() => handleOnClickForgot()}>Забыли пароль?</Link>
           <Checkbox
             name={"forgot"}
+            id={"forgot"}
             title={"Запомнить меня"}
             onChangeData={(d) => {
               formikSingIn.setFieldValue("forgot", !d);

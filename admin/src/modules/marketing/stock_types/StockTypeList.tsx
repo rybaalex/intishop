@@ -4,21 +4,17 @@ import {
 } from "react-admin";
 
 
-import { CustomImage } from "../../../components/fields/CustomImage";
-import { PublishedBooleanField } from "../../../components/fields/PublishedBooleanField";
 import { ListActions } from "../../../components/action/ListAction";
-import { BannerEdit } from "./BannerEdit";
+import { StockTypeEdit } from "./StockTypeEdit";
 
-const BannerList = () => {
-  return (<List title={"Баннеры"} sort={{ field: "sort", order: "ASC" }} actions={<ListActions />}>
-    <Datagrid expand={<BannerEdit />} expandSingle rowClick="edit">
-      <CustomImage source="image" label={"Фото"} sortable={false} uploads_name={"banners"} />
-      <TextField source="name" label={"Наименование баннера"} />
-      <TextField source="url" label={"URL"} sortable={false} />
-      <TextField source="sort" label={"Сортировка"} textAlign={"center"} />
-      <PublishedBooleanField source={"published"} resource={"banners"} label={"Показан"} textAlign={"center"}
-                             sortable={false} />
+const StockTypeList = () => {
+  return (<List title={"Типы акций"} sort={{ field: "title", order: "ASC" }} actions={<ListActions />}>
+    <Datagrid expand={<StockTypeEdit />} expandSingle rowClick="edit">
+      <TextField source="title" label={"Наименование"} />
+      <TextField source="background" label={"Цвет фона"} />
+      <TextField source="color" label={"Цвет текста"} />
+      <TextField source="code" label={"Код"} sortable={false} />
     </Datagrid>
   </List>);
 };
-export { BannerList };
+export { StockTypeList };

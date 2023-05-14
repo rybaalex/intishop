@@ -22,6 +22,10 @@ import { russianMessages } from "./russian-translate";
 import { LabelCreate, LabelList } from "./modules/products/labels";
 import { BannerList } from "./modules/marketing/banners/BannerList";
 import { BannerCreate } from "./modules/marketing/banners/BannerCreate";
+import { StockTypeList } from "./modules/marketing/stock_types/StockTypeList";
+import { StockTypeCreate } from "./modules/marketing/stock_types/StockTypeCreate";
+import { StockList } from "./modules/marketing/stocks/StockList";
+import { StockCreate } from "./modules/marketing/stocks/StockCreate";
 
 const i18nProvider = polyglotI18nProvider(() => russianMessages, "ru");
 const AppAdmin = () => (
@@ -45,6 +49,8 @@ const AppAdmin = () => (
     <Resource name="tags" list={TagList} create={TagCreate} />
     <Resource name="labels" list={LabelList} create={LabelCreate} />
     <Resource name="banners" list={BannerList} create={BannerCreate} />
+    <Resource name="stock_types" list={StockTypeList} create={StockTypeCreate} />
+    <Resource name="stocks" list={StockList} create={StockCreate} />
   </Admin>
 );
 

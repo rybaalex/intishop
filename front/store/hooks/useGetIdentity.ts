@@ -3,14 +3,14 @@ import { dataProvider } from "service/dataProvider";
 import { IParams } from "types/Request";
 
 
-const useGetOne = () => {
+const useGetIdentity = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>(undefined);
 
-  const getOne = (resource: string, params?: IParams, auth = false) => {
+  const getIdentity = (resource: string) => {
 
     setIsLoading(true);
-    return dataProvider.getOne(resource, { id:params.id, auth })
+    return dataProvider.getIdentity(resource)
       .then(data => {
         setIsLoading(false);
         return data;
@@ -19,7 +19,7 @@ const useGetOne = () => {
       });
   };
 
-  return { isLoading, getOne, isError };
+  return { isLoading, getIdentity, isError };
 };
 
-export { useGetOne };
+export { useGetIdentity };

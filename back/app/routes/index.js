@@ -4,6 +4,7 @@ const staticPage = require("./staticpage.ts");
 const categories = require("./categories.ts");
 const banners = require("./banners.ts");
 const users = require("./users.ts");
+const stocks = require("./stocks.ts");
 
 let rootRouter = Router();
 rootRouter.use("/", roles);
@@ -11,5 +12,6 @@ rootRouter.use("/", staticPage);
 rootRouter.use("/", categories);
 rootRouter.use("/", banners);
 rootRouter.use("/", users);
+rootRouter.use("/", stocks);
 
 module.exports = rootRouter;

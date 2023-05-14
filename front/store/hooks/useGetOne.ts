@@ -3,24 +3,14 @@ import { dataProvider } from "service/dataProvider";
 import { IParams } from "types/Request";
 
 
-const useGetList = () => {
+const useGetOne = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>(undefined);
 
-  const getList = (resource: string, params?: IParams, auth = false) => {
-
-    const { pagination, sort, filter }: IParams = params !== undefined ? {
-      pagination: params.pagination,
-      sort: params.sort,
-      filter: params.filter
-    } : {
-      pagination: { page: 0, perPage: 0 },
-      sort: { field: "sort", order: "DESC" },
-      filter: {}
-    };
+  const getOne = (resource: string, id?: string, auth = false) => {
 
     setIsLoading(true);
-    return dataProvider.getList(resource, { pagination, sort, filter, auth })
+    return dataProvider.getOne(resource, { id: id, auth })
       .then(data => {
         setIsLoading(false);
         return data;
@@ -29,7 +19,7 @@ const useGetList = () => {
       });
   };
 
-  return { isLoading, getList, isError };
+  return { isLoading, getOne, isError };
 };
 
-export { useGetList };
+export { useGetOne };

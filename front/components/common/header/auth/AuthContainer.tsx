@@ -41,6 +41,10 @@ const AuthContainer: FC = () => {
     setSnackBar({ isShow: true, message: "Добро пожаловать", svgIcon: SuccessIcon });
     toggle();
   };
+  const handleForgotClick = () => {
+    toggle();
+  };
+
   return (
     <div className={Styles.login_container}>
       <Button
@@ -57,7 +61,9 @@ const AuthContainer: FC = () => {
         theme={"auth"}
         modalContent={<AuthForm
           singUpSuccess={() => handleSingUpSuccess()}
-          singInSuccess={() => handleSingInSuccess()} />}
+          singInSuccess={() => handleSingInSuccess()}
+          forgot={() => handleForgotClick()}
+        />}
         headerText={""}
       />
       <SnackBar

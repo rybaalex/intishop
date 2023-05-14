@@ -1,9 +1,31 @@
 import { IResponse } from "types/response";
-import { IProduct } from "features/home/Moke";
 
-interface IGifts extends Omit<IResponse, "response"> {
-  response: IProduct[];
+interface IStocks extends Omit<IResponse, "response"> {
+  response: IStockItem[];
 }
+
+interface IStockItem {
+  description: string,
+  id: string,
+  image?: {
+    mobile?: string,
+    tablet?: string,
+    desktop?: string
+  }
+  published: boolean,
+  sort: number,
+  type: IStockType
+  url: string
+}
+
+interface IStockType {
+  background: string,
+  color: string,
+  _id: string,
+  title: string,
+  code: string,
+}
+
 
 interface IBanners extends Omit<IResponse, "response"> {
   response: IBanners[];
@@ -11,7 +33,7 @@ interface IBanners extends Omit<IResponse, "response"> {
 
 interface ISSRData {
   banners?: IBanners;
-  gifts?: IGifts;
+  stocks?: IStocks;
 }
 
-export { ISSRData, IGifts, IBanners };
+export { ISSRData, IStocks, IBanners, IStockItem };
