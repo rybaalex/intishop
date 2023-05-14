@@ -1,1 +1,0 @@
-export { GiftContainer as Gifts } from "./GiftContainer";

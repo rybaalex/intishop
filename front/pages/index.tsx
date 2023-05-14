@@ -5,16 +5,13 @@ import { Layout } from "components/common";
 import { Home } from "features/index";
 import { fetchStaticPage } from "components/common/header/static_page/StaticPageSlice";
 import { getList } from "service/server/dataProviderServer";
-import { IResponse } from "types/response";
-import { mokeProduct } from "features/home/Moke";
 import { ISSRData } from "features/home/Home";
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store) => async () => {
     const banners = await getList("banners", { sort: { field: "sort", order: "ASC" }, filter: { published: true } });
-    const gifts: IResponse = {
-      errorMessage: "", hasError: false, response: mokeProduct
-    };
+    const stocks = await getList("stocks", { sort: { field: "sort", order: "ASC" }, filter: { published: true } });
+
     store.dispatch(fetchStaticPage({
       staticPageState: await getList("staticpages", {
         sort: {
@@ -24,7 +21,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
       })
     }));
     return {
-      props: { banners: banners, gifts: gifts },
+      props: { banners: banners, stocks: stocks },
       revalidate: 10
     };
   }

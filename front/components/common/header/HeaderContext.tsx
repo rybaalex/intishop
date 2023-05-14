@@ -40,7 +40,7 @@ const HeaderContext = () => {
     </div>;
   };
   return (<Container className={Styles.section_header_context}>
-      <Container className="wrapper" el={"div"}>
+      <Container className="wrapper width100" el={"div"}>
         <div className={Styles.container_header}>
           <div className={Styles.header__menu}
                onMouseEnter={() => toggleMenu()}
