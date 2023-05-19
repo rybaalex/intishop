@@ -1,8 +1,6 @@
 const stockModel = require("../../../models/stock.model");
 const apiError = require("../../../exceptions/api-error");
 const codeErrors = require("../../../exceptions/code_errors");
-const bannerModel = require("../../../models/banner.model");
-
 
 class StockService {
   async getStocks(query) {

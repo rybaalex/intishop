@@ -11,6 +11,8 @@ const categories = require("./categories.ts");
 const banners = require("./banners.ts");
 const stockType = require("./stock_types.ts");
 const stock = require("./stock.ts");
+const product = require("./products.ts");
+const country = require("./countries.ts");
 
 //users
 
@@ -27,5 +29,7 @@ rootRouter.use("/", categories);
 rootRouter.use("/", banners);
 rootRouter.use("/", stockType);
 rootRouter.use("/", stock);
+rootRouter.use("/", product);
+rootRouter.use("/", country);
 
 module.exports = rootRouter;
