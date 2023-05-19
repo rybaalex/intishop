@@ -6,7 +6,6 @@ const codeErrors = require("../../../exceptions/code_errors");
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
-const bannerModel = require("../../../models/banner.model");
 const DIR = path.join(__dirname + "../../../../" + process.env.UPLOADS + "/stocks/");
 const size_img = "297";
 
