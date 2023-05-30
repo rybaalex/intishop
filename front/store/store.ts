@@ -2,13 +2,15 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import staticPageSlice from "components/common/header/static_page/StaticPageSlice";
 import authSlice from "components/common/header/auth/AuthSlice";
+import menuShowSlice from "components/common/header/catalog/MenuShowSlice";
 
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [staticPageSlice.name]: staticPageSlice.reducer,
-      [authSlice.name]: authSlice.reducer
+      [authSlice.name]: authSlice.reducer,
+      [menuShowSlice.name]: menuShowSlice.reducer
     },
     devTools: true
   });

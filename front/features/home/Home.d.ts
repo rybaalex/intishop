@@ -25,8 +25,6 @@ interface IStockType {
   title: string,
   code: string,
 }
-
-
 interface IBanners extends Omit<IResponse, "response"> {
   response: IBanners[];
 }

@@ -1,7 +1,6 @@
-const countryModel = require("../../../models/country.model");
+const countryModel = require("../../../models/countries.model");
 const apiError = require("../../../exceptions/api-error");
 const codeErrors = require("../../../exceptions/code_errors");
-const stockModel = require("../../../models/stock.model");
 
 class CountryService {
   async getCountries(query) {

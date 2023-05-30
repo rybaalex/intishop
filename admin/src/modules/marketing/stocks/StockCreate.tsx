@@ -10,7 +10,7 @@ import {
 } from "react-admin";
 import { Box } from "@mui/material";
 
-interface IDataType {
+export interface IDataType {
   id?: string,
   name?: string,
   title?: string,

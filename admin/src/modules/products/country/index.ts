@@ -1,3 +1,3 @@
-export {TagCreate} from "./TagCreate"
-export {TagList} from "./TagList"
-export {TagEdit} from "./TagEdit"
+export {CountryCreate} from "./CountryCreate"
+export {CountryList} from "./CountryList"
+export {CountryEdit} from "./CountryEdit"

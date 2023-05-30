@@ -1,0 +1,1 @@
+export { NoPhoto } from "./NoFoto";

@@ -14,7 +14,7 @@ import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import StraightenOutlinedIcon from "@mui/icons-material/StraightenOutlined";
 import AcUnitOutlinedIcon from "@mui/icons-material/AcUnitOutlined";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import ViewCarouselOutlinedIcon from '@mui/icons-material/ViewCarouselOutlined';
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
@@ -32,8 +32,8 @@ type MenuName = "menuMarketing" | "menuCatalog" | "menuSales" | "menuCustomers" 
 
 const Menu = ({ dense = false }: MenuProps) => {
   const [state, setState] = useState({
-    menuCatalog: false,
-    menuMarketing: true,
+    menuCatalog: true,
+    menuMarketing: false,
     menuSales: false,
     menuCustomers: false,
     menuDownloads: false
@@ -130,10 +130,10 @@ const Menu = ({ dense = false }: MenuProps) => {
           dense={dense}
         />
         <MenuItemLink
-          to="/labels"
+          to="/countries"
           state={{ _scrollToTop: true }}
-          primaryText={"Этикетки"}
-          leftIcon={<BookmarkBorderOutlinedIcon />}
+          primaryText={"Страны"}
+          leftIcon={<PublicOutlinedIcon />}
           dense={dense}
         />
       </SubMenu>

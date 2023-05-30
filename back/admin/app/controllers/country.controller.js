@@ -7,7 +7,6 @@ const codeErrors = require("../../../exceptions/code_errors");
 const path = require("path");
 const DIR = path.join(__dirname + "../../../../" + process.env.UPLOADS + "/country/");
 const { transliterate } = require("../../../utils/helpers.ts");
-const stockService = require("../services/stock.service");
 const fs = require("fs");
 
 
@@ -74,7 +73,6 @@ class CountryController {
       }
 
       const countryCheckImages = await countryService.getCountryOne(putBody.id);
-      console.log("222", putBody);
       if (putBody.image) {
         if (countryCheckImages.image) {
           fs.unlink(DIR + countryCheckImages.image, function(err) {

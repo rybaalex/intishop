@@ -1,6 +1,5 @@
 import Styles from "components/common/header/Header.module.scss";
 import { FC, useEffect } from "react";
-import { useToggle } from "store/hooks/useToggle";
 import { Button } from "components/button";
 import { Catalog } from "components/common/header/catalog";
 import { Logo } from "components/common/header/logo/Logo";
@@ -14,9 +13,14 @@ import { useAppDispatch, useAppSelector } from "store/hooks";
 import { getAuth, setAuthData, setAuthIdentity } from "components/common/header/auth/AuthSlice";
 import { useGetIdentity } from "store/hooks/useGetIdentity";
 import { IAuthUser } from "types/Auth";
+import { catalogPath } from "utils/bootstrap";
+import { getMenuShow, setMenuShow } from "components/common/header/catalog/MenuShowSlice";
 
 const HeaderContext = () => {
-  const [stateMenu, toggleMenu] = useToggle(false);
+  /*
+    const [stateMenu, toggleMenu] = useToggle(false);
+  */
+  const showMenu = useAppSelector(getMenuShow);
   const { getCheckAuth } = useCheckAuth();
   const { getIdentity } = useGetIdentity();
   const dispatch = useAppDispatch();
@@ -39,21 +43,22 @@ const HeaderContext = () => {
       <span></span>
     </div>;
   };
+
   return (<Container className={Styles.section_header_context}>
       <Container className="wrapper width100" el={"div"}>
         <div className={Styles.container_header}>
           <div className={Styles.header__menu}
-               onMouseEnter={() => toggleMenu()}
-               onMouseLeave={() => toggleMenu()}
+               onMouseEnter={() => dispatch(setMenuShow({ isShow: true }))}
+               onMouseLeave={() => dispatch(setMenuShow({ isShow: false }))}
           >
             <Button
               theme={"chips"}
-              link={"catalog"}
+              link={catalogPath}
               color={"primary"}
               textAlign={"justify"}
-              customClass={`${Styles.animated_svg} ${stateMenu ? Styles.active : ""}`}
+              customClass={`${Styles.animated_svg} ${showMenu ? Styles.active : ""}`}
             >Каталог <HamburgerMenu /></Button>
-            <Catalog isShowMenu={stateMenu} />
+            <Catalog isShowMenu={showMenu} />
           </div>
           <div className={Styles.header}>
 
@@ -62,7 +67,7 @@ const HeaderContext = () => {
             </div>
             <SearchContainer />
             <div className={Styles.header__contacts}>
-              {auth.identity ? <AuthContainer /> : <AuthContainer />}
+              {auth.identity ? <span>Привет</span> : <AuthContainer />}
               <div className={Styles.block_favourites}>
                 <HeartIcon />
                 <div className={Styles.count}><span>9+</span></div>

@@ -9,7 +9,6 @@ interface IStocksData {
 }
 
 const StocksContainer: FC<IStocksData> = ({ stocks }) => {
-  console.log("stock", stocks);
   return (<div className={Styles.stock_container}>
     {(stocks.response as []).length > 0 && (stocks.response as []).map((data: IStockItem) => {
       return <div className={Styles.items} key={data.id}>

@@ -29,8 +29,8 @@ const PreviewImage: FC<ICustomImages> = ({
     });
   }
   return <div>
-    {record.src ? <div><img src={img} alt={record.title} style={{ height: "90px" }} /></div> : record?.img ?
-      <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record?.img}
+    {record.src ? <div><img src={img} alt={record.title} style={{ height: "90px" }} /></div> : record?.desktop ?
+      <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record?.desktop}
            alt={record.name} style={{ height: "90px" }} /> :
       <NoPhotographyOutlinedIcon />}</div>;
 };

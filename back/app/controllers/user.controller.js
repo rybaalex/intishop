@@ -1,6 +1,5 @@
 const userService = require("../services/user.service");
 const apiError = require("../../exceptions/api-error");
-const UserDto = require("../../dtos/user.dto");
 const responseDto = require("../../dtos/response.dto");
 const codeErrors = require("../../exceptions/code_errors");
 const ObjectID = require("mongodb").ObjectID;

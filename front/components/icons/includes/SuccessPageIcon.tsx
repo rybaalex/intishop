@@ -18,19 +18,19 @@ function SuccessPageIcon() {
       <defs>
         <linearGradient id="paint0_linear_89_90" x1="335" y1="8" x2="180" y2="211.5" gradientUnits="userSpaceOnUse">
           <stop stop-color="#3B632F"/>
-          <stop offset="1" stop-color="#3B632F" stop-opacity="0"/>
+          <stop offset="1" stop-color="#3B632F" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint1_linear_89_90" x1="127" y1="-44" x2="93.5" y2="134" gradientUnits="userSpaceOnUse">
           <stop stop-color="#3B632F"/>
-          <stop offset="1" stop-color="#3B632F" stop-opacity="0"/>
+          <stop offset="1" stop-color="#3B632F" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint2_linear_89_90" x1="96.1249" y1="134.779" x2="45.5" y2="244.5" gradientUnits="userSpaceOnUse">
           <stop stop-color="#3B632F"/>
-          <stop offset="1" stop-color="#3B632F" stop-opacity="0"/>
+          <stop offset="1" stop-color="#3B632F" stopOpacity="0"/>
         </linearGradient>
         <linearGradient id="paint3_linear_89_90" x1="164" y1="125" x2="163.989" y2="197.083" gradientUnits="userSpaceOnUse">
           <stop stop-color="#3B632F"/>
-          <stop offset="1" stop-color="#3B632F" stop-opacity="0"/>
+          <stop offset="1" stop-color="#3B632F" stopOpacity="0"/>
         </linearGradient>
       </defs>
     </svg>
