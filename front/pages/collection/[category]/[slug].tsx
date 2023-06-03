@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
 
     const category = await getList("categories", {
       sort: { field: "sort", order: "ASC" },
-      filter: { alias: context.params.category, published: true }
+      filter: { alias: context.params.slug, published: true }
     });
 
     const categories = await getList("categories", {

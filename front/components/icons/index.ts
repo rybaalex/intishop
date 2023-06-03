@@ -17,5 +17,6 @@ export { SuccessPageIcon } from "./includes/SuccessPageIcon";
 export { TrackIcon } from "./includes/TrackIcon";
 export { PriceIcon } from "./includes/PriceIcon";
 export { AvailableIcon } from "./includes/AvailableIcon";
+export { ArrowIcon } from "./includes/ArrowIcon";
 
 
