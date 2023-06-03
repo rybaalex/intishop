@@ -1,19 +1,17 @@
 import React from "react";
 import { Datagrid, List, TextField } from "react-admin";
 import { ListActions } from "../../../components/action/ListAction";
-import { PublishedBooleanField } from "../../../components/fields/PublishedBooleanField";
-import { TagEdit } from "./TagEdit";
+import { CountryEdit } from "./CountryEdit";
+import { CustomImageFree } from "../../../components/fields/CustomImageFree";
 
-const TagList = () => {
+const CountryList = () => {
   return <List actions={<ListActions />} title={"Список тегов"} sort={{ field: "sort", order: "ASC" }}>
-    <Datagrid expand={<TagEdit />} expandSingle rowClick="edit">
-      <TextField source="name" label={"Наименование размера"} />
-      <TextField source="code" label={"Код размера"} sortable={false} textAlign={"center"} />
-      <TextField source="sort" label={"Сортировка"} textAlign={"center"} />
-      <PublishedBooleanField source={"published"} resource={"tags"} label={"Показан"} sortable={false}
-                             textAlign={"center"} />
+    <Datagrid expand={<CountryEdit />} expandSingle rowClick="edit">
+      <CustomImageFree source="image" label={"Фото"} sortable={false} uploads_name={"country"} />
+      <TextField source="name" label={"Наименование Страны"} />
+      <TextField source="code" label={"Код"} />
     </Datagrid>
   </List>;
 };
 
-export { TagList };
+export { CountryList };

@@ -5,36 +5,34 @@
   ul {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
     justify-content: center;
-    color: color(bredcrumbs_link);
-    margin-top: 80px;
+    color: color(color_text_primary);
     @include phoneScreen {
-      margin-top: 50px;
       flex-direction: column;
       gap: 8px;
     }
+
     li {
       align-items: center;
       display: flex;
-      color: color(bredcrumbs_no_link);
+      color: color(color_text_breadcrumbs);
       a {
-        color: color(bredcrumbs);
-        font-size: 14px;
+        color: color(color_text_breadcrumbs);
+        font-size: 12px;
         transition: all 0.3s;
         letter-spacing: 0.025em;
-        padding: 6px 0;
         position: relative;
         @include phoneScreen {
           font-size: 12px;
         }
+
         &:hover {
-          color: color(bredcrumbs_hover);
-          &::after {
-            width: 100%;
-            background-color: color(bredcrumbs_hover);
-          }
+          transition: all 0.3s;
+
+          color: color(color_text_primary_active);
         }
+
         &::after {
           content: "";
           display: block;
@@ -47,13 +45,16 @@
           transition: width 0.3s;
         }
       }
+
       span {
         padding: 0 8px;
+
         svg {
           width: 10px;
           height: 10px;
           position: relative;
           top: 1px;
+
           path {
             fill: color(bredcrumbs);
           }

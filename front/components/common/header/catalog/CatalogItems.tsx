@@ -2,6 +2,8 @@ import { FC } from "react";
 import { ICategoryItem } from "components/common/header/catalog/CatalogContainer";
 import { Link } from "components/link";
 import Styles from "./Catalog.module.scss";
+import { useAppDispatch } from "store/hooks";
+import { setMenuShow } from "components/common/header/catalog/MenuShowSlice";
 
 interface ICatalogItem {
   item: ICategoryItem,
@@ -9,8 +11,11 @@ interface ICatalogItem {
 }
 
 const CatalogItems: FC<ICatalogItem> = ({ item, data }) => {
+  const dispatch = useAppDispatch();
   const filter: ICategoryItem[] = data.filter(e => e.parent_id === item.id) || [];
-  return <li key={item.id}>
+  return <li key={item.id} onClick={() => {
+    dispatch(setMenuShow({ isShow: false }));
+  }}>
     <Link url={"/collection/" + item.alias}>
       {item.name}
     </Link>
@@ -22,7 +27,8 @@ const CatalogItems: FC<ICatalogItem> = ({ item, data }) => {
         <div>
           <ul>
             {filter.map(data => {
-              return <li key={data.id}><Link url={"/collection/" + item.alias + "/" + data.alias}>{data.name}</Link></li>;
+              return <li key={data.id}><Link url={"/collection/" + item.alias + "/" + data.alias}>{data.name}</Link>
+              </li>;
             })}
           </ul>
         </div>

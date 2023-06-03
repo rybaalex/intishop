@@ -22,7 +22,7 @@ const httpClient = (url, options = {}) => {
     });
   }
 };
-//const httpClient = fetchUtils.fetchJson;
+
 const dataProvider = {
 
   getOne: (resource, params) => httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => {
@@ -79,18 +79,30 @@ const dataProvider = {
 
   create: async (resource, params) => {
     let result = params.data;
-    if (typeof params.data.image == "object") {
-      await convertFileToBase64(params.data.image).then(base64 => {
+    let resArrayImg = [];
+    if (!(result.image instanceof Array) && (result.image != null)) {
+      await convertFileToBase64(result.image).then(base64 => {
         result.image = {
           img: base64.toString(),
           title: `${params.data.image.title}`,
           mimeType: `${params.data.image.rawFile.type}`
         };
       });
-    } else {
-
     }
 
+    if ((result.image instanceof Array) && result.image !== ("undefined" || "null")) {
+      await Promise.all(result.image.map(async (data) => {
+        await convertFileToBase64(data).then(base64 => {
+          resArrayImg.push({
+            img: base64.toString(),
+            title: `${data.title}`,
+            mimeType: `${data.rawFile.type}`
+          });
+        });
+      }));
+      result.image = resArrayImg;
+    }
+    console.log("www", result);
     return httpClient(`${apiUrl}/${resource}`, {
       method: "POST",
       body: JSON.stringify(result)

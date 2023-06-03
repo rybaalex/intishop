@@ -1,7 +1,7 @@
 import { Edit, ImageInput, SimpleForm, TextInput, useRecordContext, useResourceContext } from "react-admin";
-import { PreviewImage } from "../../../components/fields/PreviewImage";
 import { Box } from "@mui/material";
 import { RichTextInput } from "ra-input-rich-text";
+import { PreviewImageFree } from "../../../components/fields/PreviewImageFree";
 
 const BrandEdit = () => {
   const record = useRecordContext();
@@ -21,12 +21,12 @@ const BrandEdit = () => {
             <TextInput source="sort" label={"Сортировка"} required fullWidth />
           </Box>
           <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
-            <TextInput source="alias" label={"Алиас"} required fullWidth />
+            <TextInput source="alias" label={"Алиас"} disabled fullWidth />
           </Box>
         </Box>
         <RichTextInput source="description" label={"СЕО Описание бренда"} fullWidth />
-        <ImageInput source="logo" label={"Логотип"} fullWidth>
-          <PreviewImage />
+        <ImageInput source="image" label={"Логотип"} fullWidth>
+          <PreviewImageFree source={"image"} />
         </ImageInput>
       </SimpleForm>
     </Edit>

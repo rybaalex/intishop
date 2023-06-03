@@ -17,6 +17,6 @@ const authProvider: IAuthProvider = {
     return inMemoryJWTManager.getRefreshedToken().then(() => {
       return !!inMemoryJWTManager.getToken();
     });
-  },
+  }
 };
 export { authProvider };
