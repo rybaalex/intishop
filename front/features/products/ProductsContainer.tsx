@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { ISSRProducts } from "types/Product";
 import { Container } from "components/common";
 import Styles from "./Products.module.scss";
@@ -12,7 +12,6 @@ const ProductsContainer: FC<ISSRProducts> = ({ products, category, categories })
   const [breadData, setBreadData] = useState<IBreadCrumbs[]>();
   useEffect(() => {
     const filterCategory: ICategoryItem[] = categories.response.filter(item => item.id === category.response[0].parent_id);
-
     setBreadData([
       ...dataBread,
       { title: "Каталог", alias: "/collection" },
@@ -20,21 +19,25 @@ const ProductsContainer: FC<ISSRProducts> = ({ products, category, categories })
       { title: category.response[0].name, alias: "/" + category.response[0].alias }
     ]);
   }, [category]);
+  const memoCategory = useMemo(() => <CategoriesContainer
+    categories={categories.response}
+    current_category={category.response[0]}
+  />, [category]);
+
+  const memoBreadCrumbs = useMemo(() => <BreadCrumbs data={breadData || []} />, [category]);
+
   return (<Container className={"wrapper no_margin"}>
     <div className={Styles.products_wrapper}>
       <div className={Styles.category_container}>
         <div className={Styles.catalog_title}>Каталог</div>
         <div className={Styles.catalog_body}>
           <ul>
-            <CategoriesContainer
-              categories={categories.response}
-              current_category={category.response[0]}
-            />
+            {categories&&memoCategory}
           </ul>
         </div>
       </div>
       <div className={Styles.product_container}>
-        <div><BreadCrumbs data={breadData || []} /></div>
+        <div>{breadData&&memoBreadCrumbs}</div>
         <h1>{category.response[0].name}</h1>
       </div>
     </div>
