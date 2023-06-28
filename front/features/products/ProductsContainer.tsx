@@ -9,6 +9,7 @@ import { ICategoryItem } from "types/Categories";
 import { catalogPath } from "utils/bootstrap";
 
 const ProductsContainer: FC<ISSRProducts> = ({ products, category, categories }) => {
+  console.log("---", products);
   const [breadData, setBreadData] = useState<IBreadCrumbs[]>();
   useEffect(() => {
     const filterCategory: ICategoryItem[] = categories.response.filter(item => item.id === category.response[0].parent_id);
@@ -39,6 +40,7 @@ const ProductsContainer: FC<ISSRProducts> = ({ products, category, categories })
       <div className={Styles.product_container}>
         <div>{breadData&&memoBreadCrumbs}</div>
         <h1>{category.response[0].name}</h1>
+        <div className={Styles.product_block}>222</div>
       </div>
     </div>
   </Container>);

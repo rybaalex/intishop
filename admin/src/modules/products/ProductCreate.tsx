@@ -93,7 +93,7 @@ const ProductCreate = () => {
             <TextInput source="name" label={"Название товара"} validate={required()} fullWidth />
           </Box>
           <Box flex={2} mr={{ xs: 0, sm: "0.5em" }}>
-            <TextInput source="alias" label={"Алиас"} required fullWidth />
+            <TextInput source="article" label={"Код"} required fullWidth />
           </Box>
           <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
             <SelectInput source="brands" label={"Бренд"}
@@ -167,7 +167,7 @@ const ProductCreate = () => {
             <NumberInput source="price" label={"Цена"} validate={required()} fullWidth />
           </Box>
           <Box flex={1} ml={{ xs: 0, sm: "0.5em" }}>
-            <NumberInput source="price_sale" label={"Цена со скидкой"} fullWidth />
+            <NumberInput source="sale" label={"Скидка,%"} fullWidth />
           </Box>
         </Box>
       </TabbedForm.Tab>

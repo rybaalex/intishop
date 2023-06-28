@@ -6,19 +6,19 @@ interface ICustomImages extends TextFieldProps {
   uploads_name?: string;
 }
 
-const CustomImage: FC<ICustomImages> = ({
-                                          source,
-                                          resource,
-                                          textAlign = "left",
-                                          label = "",
-                                          uploads_name = "brands"
-                                        }) => {
+const CustomImageArray: FC<ICustomImages> = ({
+                                               source,
+                                               resource,
+                                               textAlign = "left",
+                                               label = "",
+                                               uploads_name = "brands"
+                                             }) => {
 
   const record = useRecordContext();
-  return <div>{record[source as string]?.desktop ?
-    <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record[source as string]?.desktop}
-         alt={record.name} style={{ maxHeight: "40px" }} /> :
+  return <div>{record[source as string][0]?.catalog ?
+    <img src={process.env.REACT_APP_APP_UPLOADS + "/" + uploads_name + "/" + record[source as string][0]?.catalog}
+         alt={record.name} style={{ maxHeight: "70px" }} /> :
     <NoPhotographyOutlinedIcon />}</div>;
 };
 
-export { CustomImage };
+export { CustomImageArray };

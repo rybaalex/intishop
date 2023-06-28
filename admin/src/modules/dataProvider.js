@@ -90,6 +90,16 @@ const dataProvider = {
       });
     }
 
+    if (result.image_catalog) {
+      await convertFileToBase64(result.image_catalog).then(base64 => {
+        result.image_catalog = {
+          img: base64.toString(),
+          title: `${params.data.image_catalog.title}`,
+          mimeType: `${params.data.image_catalog.rawFile.type}`
+        };
+      });
+    }
+
     if ((result.image instanceof Array) && result.image !== ("undefined" || "null")) {
       await Promise.all(result.image.map(async (data) => {
         await convertFileToBase64(data).then(base64 => {
@@ -102,7 +112,7 @@ const dataProvider = {
       }));
       result.image = resArrayImg;
     }
-    console.log("www", result);
+
     return httpClient(`${apiUrl}/${resource}`, {
       method: "POST",
       body: JSON.stringify(result)

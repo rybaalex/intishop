@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppState } from "store/store";
-import { IAuth } from "types/Auth";
 
 interface IMenuShow {
   isShow: boolean;
