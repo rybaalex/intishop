@@ -6,7 +6,7 @@ class ProductDto {
   seo_description;
   seo_keyword;
   images;
-  brand;
+  image_catalog;
   categories;
   sizes;
   structures;
@@ -15,7 +15,7 @@ class ProductDto {
   stocks;
   count;
   price;
-  price_sale;
+  sale;
   published;
 
   constructor(model) {
@@ -35,7 +35,7 @@ class ProductDto {
     this.stocks = model.stocks;
     this.count = model.count;
     this.price = model.price;
-    this.price_sale = model.price_sale;
+    this.sale = model.sale;
     this.published = model.published;
 
   }

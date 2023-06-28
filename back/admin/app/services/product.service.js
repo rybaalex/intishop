@@ -7,7 +7,7 @@ class ProductService {
   async getProducts(query) {
     const sort = JSON.parse(query.sort);
     const range = JSON.parse(query.range);
-    return productModel.find().populate(["brands", "size","categories", "structures", "colors", "tags", "stocks"]).skip(range[0]).limit(range[1] - range[0]).sort([sort]);
+    return productModel.find().populate(["brands", "sizes","categories", "structures", "colors", "tags", "stocks"]).skip(range[0]).limit(range[1] - range[0]).sort([sort]);
   }
 
   async getProductIds(ids) {
